@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
             easing: 'ease-out-cubic',
             once: true,
             offset: 50,
+            // Disable on phones: the horizontal fade-left/right offsets can cause
+            // a sideways scroll, and skipping them is lighter on mobile too.
+            disable: () => window.innerWidth < 768,
         });
     }
 
@@ -658,93 +661,54 @@ class UserController extends Controller
     }
 
     // ==========================================================
-    // Ambient coding background — digital "code-rain" (canvas)
-    // Subtle, GPU-light matrix of monospace code glyphs in the
-    // green/cyan theme. Fades trails to transparency so the aurora
-    // glows stay visible behind it. Respects reduced-motion.
+    // Ambient coding background — CSS-driven "code-rain"
+    // Columns of monospace glyphs scroll via a transform-only CSS
+    // animation (see .code-rain-col / @keyframes codeRainFall), so the
+    // motion lives on the compositor thread and NEVER pauses or janks
+    // during scroll. JS only builds the static DOM once (and on resize).
     // ==========================================================
     (function initCodeRain() {
-        const canvas = document.getElementById('code-rain');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        const host = document.getElementById('code-rain');
+        if (!host) return;
 
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const chars = '01<>{}[]()=>;:+-*/$_.|&%#abcdef!?'.split('');
+        const glyphs = '01<>{}[]()=>;:+-*/$_.|&%#abcdef!?';
+        const pick = () => glyphs[(Math.random() * glyphs.length) | 0];
 
-        let width, height, fontSize, columns, drops, dpr;
+        function build() {
+            host.innerHTML = '';
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const spacing = vw < 600 ? 30 : 42;            // px between columns
+            const cols = Math.max(1, Math.floor(vw / spacing));
+            const lineH = (vw < 600 ? 13 : 15) * 1.5;      // keep in sync with CSS line-height
+            const linesPerCopy = Math.ceil(vh / lineH) + 6;
 
-        function setup() {
-            dpr = Math.min(window.devicePixelRatio || 1, 2);
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = Math.floor(width * dpr);
-            canvas.height = Math.floor(height * dpr);
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            fontSize = width < 600 ? 13 : 16;
-            columns = Math.ceil(width / fontSize);
-            drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -40));
-            ctx.textBaseline = 'top';
-        }
-
-        function paintColumns() {
-            ctx.font = fontSize + "px 'JetBrains Mono', monospace";
-            for (let i = 0; i < columns; i++) {
-                const ch = chars[(Math.random() * chars.length) | 0];
-                const x = i * fontSize;
-                const y = drops[i] * fontSize;
-                // bright "head" glyph (cyan-white), trailing body in run-green
-                ctx.fillStyle = Math.random() > 0.93
-                    ? 'rgba(190, 255, 234, 0.92)'
-                    : 'rgba(34, 197, 94, 0.58)';
-                ctx.fillText(ch, x, y);
-                if (y > height && Math.random() > 0.975) {
-                    drops[i] = Math.floor(Math.random() * -20);
+            const frag = document.createDocumentFragment();
+            for (let c = 0; c < cols; c++) {
+                // one "copy" of random glyphs, with a few bright cyan heads
+                let copy = '';
+                for (let i = 0; i < linesPerCopy; i++) {
+                    const ch = pick();
+                    copy += (Math.random() > 0.9 ? '<span class="hi">' + ch + '</span>' : ch) + '\n';
                 }
-                drops[i]++;
+                const col = document.createElement('div');
+                col.className = 'code-rain-col';
+                col.style.left = (c * spacing + spacing * 0.35) + 'px';
+                col.innerHTML = copy + copy;               // duplicate → seamless loop
+                const dur = 16 + Math.random() * 26;       // 16–42s, varied speeds
+                col.style.animationDuration = dur.toFixed(1) + 's';
+                col.style.animationDelay = (-Math.random() * dur).toFixed(1) + 's';
+                frag.appendChild(col);
             }
+            host.appendChild(frag);
         }
 
-        let rafId = null, last = 0;
-        const STEP = 65; // ms between rows → ~15fps, light on the CPU
-
-        function frame(ts) {
-            rafId = requestAnimationFrame(frame);
-            if (ts - last < STEP) return;
-            last = ts;
-            // erase ~10% of existing alpha each step → fading trails, stays transparent
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.10)';
-            ctx.fillRect(0, 0, width, height);
-            ctx.globalCompositeOperation = 'source-over';
-            paintColumns();
-        }
-
-        function start() { if (rafId === null) { last = 0; rafId = requestAnimationFrame(frame); } }
-        function stop() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
-
-        setup();
-
-        if (reduceMotion) {
-            // Static, very faint single frame — no motion for sensitive users
-            ctx.font = fontSize + "px 'JetBrains Mono', monospace";
-            for (let i = 0; i < columns; i += 2) {
-                if (Math.random() > 0.5) continue;
-                ctx.fillStyle = 'rgba(34, 197, 94, 0.16)';
-                ctx.fillText(chars[(Math.random() * chars.length) | 0], i * fontSize, Math.random() * height);
-            }
-            return;
-        }
-
-        start();
+        build();
 
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setup, 200);
-        });
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) { stop(); } else { start(); }
-        });
+            resizeTimer = setTimeout(build, 300);
+        }, { passive: true });
     })();
 });

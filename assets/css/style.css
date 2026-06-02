@@ -57,12 +57,43 @@
   --bs-link-hover-color-rgb: 6, 182, 212;
 }
 
+html {
+  /* Root-level guard: clip any horizontal overflow (e.g. AOS fade-left/right
+     start offsets, long code strings) so phones never get a sideways scroll. */
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bx-bg);
   color: var(--bx-text);
   overflow-x: hidden;
   position: relative;
+}
+
+/* Long monospace strings (API-style FAQ rows, terminal commands, code titles)
+   must wrap on small screens instead of forcing the layout wider than the
+   viewport. */
+.accordion-button,
+.code-editor-title {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.terminal-box,
+.terminal-cmd,
+.terminal-prompt {
+  overflow-wrap: anywhere;
+}
+
+/* Large Bootstrap gutters (g-5 = 3rem) on rows sitting directly inside a
+   .container overshoot the container padding by ~12px on phones; shrink the
+   gutter so nothing spills past the viewport edge. */
+@media (max-width: 575.98px) {
+  .row.g-5,
+  .row.gx-5 {
+    --bs-gutter-x: 1.5rem;
+  }
 }
 
 .text-muted {
@@ -102,20 +133,49 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   z-index: -2;
   pointer-events: none;
   opacity: 0.5;
-  /* Keep the canvas on its own GPU layer so it keeps painting while the
-     page scrolls (prevents the "animation pauses on scroll" jank). */
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
   -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 40%, transparent 6%, rgba(0, 0, 0, 0.5) 48%, #000 96%);
   mask-image: radial-gradient(ellipse 88% 78% at 50% 40%, transparent 6%, rgba(0, 0, 0, 0.5) 48%, #000 96%);
 }
 
+/* Each column scrolls with a transform-only animation → runs on the
+   compositor thread, so it never pauses or janks while the page scrolls
+   (no per-frame JavaScript involved). main.js builds the columns once. */
+.code-rain-col {
+  position: absolute;
+  top: 0;
+  font-family: var(--font-code);
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre;
+  text-align: center;
+  color: rgba(34, 197, 94, 0.5);
+  will-change: transform;
+  animation-name: codeRainFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.code-rain-col .hi {
+  color: rgba(190, 255, 234, 0.92);
+  text-shadow: 0 0 6px rgba(190, 255, 234, 0.45);
+}
+
+@keyframes codeRainFall {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .code-rain-col { font-size: 13px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  #code-rain { opacity: 0.22; }
+  #code-rain { opacity: 0.28; }
+  .code-rain-col { animation: none !important; }
 }
 
 /* 2. Fluid Aurora Glows (Advanced modern fluid animation) */
@@ -1575,6 +1635,193 @@ select:focus-visible,
 .file-tree-item[style*="cursor: default"],
 .footer-status-item {
   cursor: default;
+}
+
+/* ==========================================================================
+   RESPONSIVE — Mobile mini (≤374px) · Mobile normal (375–575px) · Tablet (576–991px)
+   Strategy: scale typography, stack every 2-col layout, cap code editor height,
+   shrink hero padding, hide decorative absolute widgets.
+   ========================================================================== */
+
+/* ── TABLET (576–991px) ────────────────────────────────────────────────── */
+@media (max-width: 991.98px) {
+
+  /* Hero */
+  .hero-section {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: auto;
+  }
+
+  /* Display headings */
+  .display-3 { font-size: 2.4rem; }
+  .display-4 { font-size: 2rem; }
+  .display-5 { font-size: 1.75rem; }
+  .display-6 { font-size: 1.5rem; }
+
+  /* "Inside the box" section: tighten gutter & scale down checklist text when stacked */
+  .row.g-5 { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
+  .row.g-5 .fs-5 { font-size: 1rem !important; }
+
+  /* Pricing cards */
+  .pricing-card { padding: 1.75rem; }
+
+  /* Footer: drop the lg offset so columns flow naturally */
+  .footer-glass .col-lg-2.offset-lg-2 { margin-left: 0; }
+
+  /* Trust bar (pricing page): compact padding */
+  .trust-bar-item { gap: 0.6rem !important; }
+
+  /* Contact: JSON live preview — cap height so it doesn't swallow the screen */
+  .live-json-pane { min-height: 220px; max-height: 320px; overflow-y: auto; }
+
+  /* Stats band: keep 2×2 grid but tighten number size */
+  .stats-band .display-5 { font-size: 1.75rem; }
+}
+
+/* ── MOBILE NORMAL (375–575px) ─────────────────────────────────────────── */
+@media (max-width: 575.98px) {
+
+  /* Sections: tighten vertical rhythm so pages don't feel padded */
+  section.py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  section.my-5 { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 56px;
+  }
+  .hero-section h1.display-3 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  .hero-section .lead { font-size: 1rem; }
+
+  /* Page headers on sub-pages */
+  .display-4 { font-size: 1.75rem; }
+  .display-5 { font-size: 1.5rem; }
+  .display-6 { font-size: 1.3rem; }
+
+  /* Hero code editor: compact on phones */
+  .hero-section .code-editor-window {
+    font-size: 0.72rem;
+    margin-top: 2rem;
+  }
+  .hero-section .code-editor-body {
+    max-height: 260px;
+    font-size: 0.72rem;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  /* Floating widget in hero (decorative, hides below md already but guard) */
+  .hero-section .position-absolute[style*="width: 220px"] {
+    display: none !important;
+  }
+
+  /* Decorative blur orbs: shrink so they don't cause side bleed */
+  .glass-panel > .position-absolute[style*="300px"] {
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  /* Feature/module cards: reduce internal padding */
+  .glass-panel.p-4 { padding: 1.15rem !important; }
+  .glass-panel.p-5 { padding: 1.5rem !important; }
+
+  /* Pricing cards */
+  .pricing-card { padding: 1.5rem; }
+  .rotating-glow-card-inner { padding: 1.5rem !important; border-radius: 1.5rem !important; }
+  .pricing-card h2.display-5,
+  .rotating-glow-card-inner h2.display-5 { font-size: 2rem; }
+
+  /* Comparison table: tighten cells */
+  .pricing-compare-table tbody td {
+    padding: 0.65rem 0.4rem;
+    font-size: 0.82rem;
+  }
+  .pricing-compare-table thead th {
+    font-size: 0.75rem;
+    padding: 0.65rem 0.4rem;
+  }
+
+  /* FAQ accordion: loosen the button text wrap */
+  .accordion-button {
+    font-size: 0.8rem !important;
+    padding: 0.9rem 1rem;
+    line-height: 1.4;
+  }
+
+  /* Code editor panels (features / contact etc.) */
+  .code-editor-window { border-radius: 0.85rem; }
+  .code-editor-body {
+    padding: 1rem;
+    font-size: 0.75rem;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .code-editor-header { padding: 0.6rem 1rem; }
+
+  /* Terminal boxes: full width, wrap long commands */
+  .terminal-box {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .terminal-box .btn-copy-code { align-self: flex-end; }
+
+  /* Contact form: full-width columns */
+  .contact-live-form .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+
+  /* Footer status bar: hide lower-priority items */
+  .footer-status-bar { gap: 0.4rem; flex-wrap: wrap; padding: 0.6rem 1rem; }
+  .footer-status-bar .d-none.d-sm-flex { display: none !important; }
+
+  /* CTA terminal box */
+  #quickstart-cmd { font-size: 0.72rem; }
+
+  /* Badge pills: allow wrapping */
+  .badge-glass-accent,
+  .badge-glass-primary,
+  .badge-glass-secondary {
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* How it works step numbers */
+  .timeline-connect-line .glass-panel { padding: 1.25rem !important; }
+}
+
+/* ── MOBILE MINI (≤374px) ───────────────────────────────────────────────── */
+@media (max-width: 374.98px) {
+
+  .hero-section h1.display-3 {
+    font-size: 1.7rem;
+  }
+  .display-4 { font-size: 1.55rem; }
+  .display-5 { font-size: 1.35rem; }
+  .display-6 { font-size: 1.2rem; }
+
+  /* Navbar brand: trim so it doesn't crowd the toggler */
+  .navbar-brand span.fw-bold { font-size: 1rem; }
+
+  /* Hero buttons: stack & full-width */
+  .hero-section .d-flex.flex-wrap.gap-3 {
+    flex-direction: column;
+  }
+  .hero-section .btn { width: 100%; justify-content: center; }
+
+  /* Module/feature icon size */
+  .feature-icon-wrapper { width: 44px; height: 44px; font-size: 20px; }
+
+  /* Pricing compare table: column header text really small */
+  .pricing-compare-table thead th { font-size: 0.68rem; }
+  .pricing-compare-table tbody td { font-size: 0.75rem; padding: 0.5rem 0.3rem; }
+
+  /* Code editor: smallest readable size */
+  .code-editor-body { font-size: 0.68rem; padding: 0.75rem; }
+
+  /* FAQ */
+  .accordion-button { font-size: 0.72rem !important; padding: 0.75rem 0.85rem; }
 }
 
 /* Respect users who prefer reduced motion (skill: reduced-motion) */
