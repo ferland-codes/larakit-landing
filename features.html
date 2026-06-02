@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - LaraKit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="bg-grid-overlay"></div>
+
+    <!-- === NAVBAR === -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <div class="d-flex align-items-center justify-content-center bg-primary bg-opacity-10 border border-primary border-opacity-20 rounded-3 text-primary"
+                    style="width: 32px; height: 32px;">
+                    <i class="ri-braces-line fs-5 text-gradient"></i>
+                </div>
+                <span class="fw-bold position-relative">LaraKit<span class="text-gradient">.</span><span class="logo-status-dot" title="System Online"></span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex gap-2 mt-3 mt-lg-0 align-items-center">
+                    <button class="btn btn-icon-glass d-none d-md-inline-flex" title="Search page or run CLI commands (Ctrl+K)">
+                        <i class="ri-search-line"></i> <span class="fs-8 text-muted" style="font-family: var(--font-code);">Cmd+K</span>
+                    </button>
+                    <a href="#" class="btn btn-outline-glass">Login</a>
+                    <a href="#" class="btn btn-primary-glass">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === FEATURES HEADER === -->
+    <section class="pt-5 mt-5 pb-4">
+        <div class="container text-center pt-5">
+            <h1 class="display-4 fw-bold mb-3" data-aos="fade-up">Powerful <span class="text-gradient">Features</span>
+            </h1>
+            <p class="lead mx-auto mb-0 text-muted" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">
+                LaraKit is packed with all the tools, security features, and integrations you need to build and scale
+                your SaaS in record time.
+            </p>
+        </div>
+    </section>
+
+    <!-- === EXTENSION MODULES SECTION === -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-accent mb-3">Modular Architecture</span>
+                <h2 class="fw-bold display-5 mb-3">Premium Extension Modules</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                    Install advanced SaaS features on-demand directly from your terminal. Zero-configuration boilerplate
+                    ready.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Storage Manager -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-primary">
+                                    <i class="ri-folder-shield-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Storage Manager</h4>
+                            <p class="text-muted small mb-0">Dual-instance file explorer with complete Private and Public storage isolation.</p>
+                            <ul class="feature-bullet-list">
+                                <li>1 GB storage quota & 512 MB file limit.</li>
+                                <li>Recursive ZIP archiving & extraction.</li>
+                                <li>Folder color tags and soft-delete trash.</li>
+                                <li>In-browser PDF and image previews.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-storage">storage</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-storage" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Manager -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-secondary">
+                                    <i class="ri-mail-send-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Email Manager</h4>
+                            <p class="text-muted small mb-0">Gmail-like interface with SMTP mail delivery and two-way IMAP sync.</p>
+                            <ul class="feature-bullet-list">
+                                <li>Socket-level connection (no php-imap extension).</li>
+                                <li>Flag changes propagate back to server.</li>
+                                <li>Rich Text editor with To/Cc/Bcc.</li>
+                                <li>Encrypted credentials & connection tests.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-email">email</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-email" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Assistant -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-accent">
+                                    <i class="ri-brain-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">AI Assistant</h4>
+                            <p class="text-muted small mb-0">RAG-augmented AI chat platform supporting top LLM cloud & local models.</p>
+                            <ul class="feature-bullet-list">
+                                <li>Key rotation & cooldown failovers.</li>
+                                <li>Document knowledge base indexing.</li>
+                                <li>Curated vs Uploaded conflict handlers.</li>
+                                <li>Floating widget chat component.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-ai">ai</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-ai" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Center -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-accent">
+                                    <i class="ri-notification-3-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Notification Center</h4>
+                            <p class="text-muted small mb-0">Unified multi-channel alert delivery service with manual dashboard send.</p>
+                            <ul class="feature-bullet-list">
+                                <li>DB, Email, SMS, WA, Telegram, FCM, Web Push.</li>
+                                <li>Reusable HTML email structures.</li>
+                                <li>Targeting groups with subscriber lists.</li>
+                                <li>Live delivery logs and dispatch helpers.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-notification">notification</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-notification" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Gateway -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-primary">
+                                    <i class="ri-whatsapp-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">WhatsApp Gateway</h4>
+                            <p class="text-muted small mb-0">Self-hosted Baileys Node.js WhatsApp session and QR pairing server.</p>
+                            <ul class="feature-bullet-list">
+                                <li>Direct API dispatch (no subscription fees).</li>
+                                <li>AI Auto-Reply with typing indicators.</li>
+                                <li>PID locks block flapping/440 conflicts.</li>
+                                <li>Anti-ban sending queues with jitter delay.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-wagateway">wagateway</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-wagateway" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Builder -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="feature-icon-wrapper text-secondary">
+                                    <i class="ri-file-chart-line"></i>
+                                </div>
+                                <span class="badge-install">Extension</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Report Builder</h4>
+                            <p class="text-muted small mb-0">No-SQL report customizer compiling beautiful PDFs and Excel databases.</p>
+                            <ul class="feature-bullet-list">
+                                <li>Table reports exported to PDF & Excel.</li>
+                                <li>WYSIWYG documents with placeholders.</li>
+                                <li>Browsershot headless Chromium engine.</li>
+                                <li>Data source whitelisting for security.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <div class="terminal-box cursor-pointer" title="Click to copy install command">
+                                <div>
+                                    <span class="terminal-prompt">php artisan larakit:install</span>
+                                    <span class="terminal-cmd" id="cmd-reports">reports</span>
+                                </div>
+                                <button class="btn-copy-code" data-clipboard-target="#cmd-reports" title="Copy command">
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CORE FEATURES SECTION === -->
+    <section class="py-5 mb-5 border-top border-secondary border-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-primary mb-3"><i class="ri-folder-open-line me-1"></i> SaaS Foundation</span>
+                <h2 class="fw-bold display-5 mb-3">Core Boilerplate Directory</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                    Robust core structure to bootstrap your project. High-quality modular patterns built directly on Laravel 13 best practices.
+                </p>
+            </div>
+
+            <div class="row g-4" data-aos="fade-up">
+                <!-- Left Pane: File Tree Directory Explorer -->
+                <div class="col-lg-4">
+                    <div class="glass-panel p-4 h-100">
+                        <h5 class="fw-bold mb-3 d-flex align-items-center gap-2" style="font-family: var(--font-heading);">
+                            <i class="ri-git-repository-line text-primary"></i> larakit-workspace
+                        </h5>
+                        <div class="file-tree-container">
+                            <div class="file-tree-item" style="color: var(--bx-text); font-weight: 600; cursor: default;">
+                                <i class="ri-folder-line text-warning"></i> app/Modules/Core
+                            </div>
+                            <div class="file-tree-item active ms-3" data-file="Storage.php">
+                                <i class="ri-file-code-line text-primary"></i> Storage.php
+                            </div>
+                            <div class="file-tree-item ms-3" data-file="Email.php">
+                                <i class="ri-file-code-line text-primary"></i> Email.php
+                            </div>
+                            <div class="file-tree-item ms-3" data-file="Ai.php">
+                                <i class="ri-file-code-line text-primary"></i> Ai.php
+                            </div>
+                            <div class="file-tree-item ms-3" data-file="Notification.php">
+                                <i class="ri-file-code-line text-primary"></i> Notification.php
+                            </div>
+                            <div class="file-tree-item ms-3" data-file="WhatsApp.php">
+                                <i class="ri-file-code-line text-primary"></i> WhatsApp.php
+                            </div>
+                            <div class="file-tree-item ms-3" data-file="Reports.php">
+                                <i class="ri-file-code-line text-primary"></i> Reports.php
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Pane: IDE Code Editor Viewport -->
+                <div class="col-lg-8">
+                    <div class="code-editor-window h-100 d-flex flex-column">
+                        <div class="code-editor-header">
+                            <div class="mac-dots">
+                                <div class="mac-dot close"></div>
+                                <div class="mac-dot minimize"></div>
+                                <div class="mac-dot expand"></div>
+                            </div>
+                            <div class="code-editor-title" style="font-size: 0.75rem;">app/Modules/Core/SuperAdmin/Controller.php</div>
+                            <div style="width: 30px;"></div>
+                        </div>
+                        <div class="code-editor-tabs">
+                            <div class="code-editor-tab active">
+                                <i class="ri-code-s-slash-line text-primary"></i> <span id="editor-tab-name">Storage.php</span>
+                            </div>
+                        </div>
+                        <div class="code-editor-body flex-grow-1" style="font-size: 0.78rem; min-height: 380px;">
+                            <pre class="m-0"><code class="language-php" id="editor-code-body">// Code loads dynamically...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CALL TO ACTION === -->
+    <section class="py-5 mb-5">
+        <div class="container">
+            <div class="glass-panel p-5 text-center rounded-4 position-relative overflow-hidden" data-aos="zoom-in">
+                <div class="position-absolute top-50 start-50 translate-middle"
+                    style="width: 300px; height: 300px; background: var(--bx-primary); filter: blur(100px); opacity: 0.15; z-index: -1;">
+                </div>
+                <h2 class="fw-bold mb-3">Launch your MVP in record time</h2>
+                <p class="lead mb-4 text-muted">Join hundreds of founders building their business logic with LaraKit.</p>
+                <div class="d-flex flex-column align-items-center gap-3">
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="pricing.html" class="btn btn-primary-glass btn-lg px-5">Get LaraKit Today</a>
+                        <a href="contact.html" class="btn btn-outline-glass btn-lg px-4"><i class="ri-mail-send-line me-2"></i> Contact Sales</a>
+                    </div>
+                    <div class="mt-3 w-100" style="max-width: 480px;">
+                        <div class="terminal-box cursor-pointer text-start">
+                            <div>
+                                <span class="terminal-prompt">$</span>
+                                <span class="terminal-cmd" id="quickstart-cmd">composer create-project larakit/larakit ./</span>
+                            </div>
+                            <button class="btn-copy-code" data-clipboard-target="#quickstart-cmd" title="Copy command">
+                                <i class="ri-file-copy-line"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer-glass">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="index.html">
+                        <div class="d-flex align-items-center justify-content-center bg-primary bg-opacity-10 border border-primary border-opacity-20 rounded-3 text-primary"
+                            style="width: 32px; height: 32px;">
+                            <i class="ri-braces-line fs-5 text-gradient"></i>
+                        </div>
+                        <span class="fs-4 fw-bold">LaraKit<span class="text-gradient">.</span></span>
+                    </a>
+                    <p class="mb-4 text-muted">The Laravel 13 SaaS Starter Kit designed to help you build faster and better.</p>
+                    
+                    <!-- Terminal Newsletter Widget -->
+                    <div class="terminal-newsletter-card mt-3">
+                        <div class="terminal-newsletter-header">
+                            <div class="d-flex gap-1 align-items-center">
+                                <span class="mac-dot bg-danger" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                                <span class="mac-dot bg-warning" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                                <span class="mac-dot bg-success" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                            </div>
+                            <span class="text-muted small" style="font-family: var(--font-code); font-size: 0.7rem;">subscribe_newsletter.sh</span>
+                        </div>
+                        <div class="terminal-newsletter-body">
+                            <p class="m-0 text-muted" style="font-size: 0.75rem;">// Subscribe for core updates</p>
+                            <form class="terminal-newsletter-form" onsubmit="event.preventDefault(); window.bxToast('Subscribed successfully!', 'success'); this.reset();">
+                                <div class="terminal-newsletter-input-group">
+                                    <span class="terminal-newsletter-prompt">&gt; email:</span>
+                                    <input type="email" class="terminal-newsletter-input" placeholder="developer@domain.com" required autocomplete="off">
+                                    <button type="submit" class="terminal-newsletter-btn">run</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Product</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="features.html" class="footer-link">Features</a></li>
+                        <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Resources</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="footer-link">Documentation</a></li>
+                        <li><a href="faq.html" class="footer-link">FAQ</a></li>
+                        <li><a href="#" class="footer-link">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Legal</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Code Editor Status Bar -->
+        <div class="footer-status-bar mt-5">
+            <div class="footer-status-left">
+                <div class="footer-status-item">
+                    <i class="ri-git-branch-line text-primary"></i>
+                    <span>main</span>
+                </div>
+                <div class="footer-status-item d-none d-sm-flex">
+                    <i class="ri-wifi-line text-success"></i>
+                    <span>ping:14ms</span>
+                </div>
+                <div class="footer-status-item">
+                    <i class="ri-code-s-slash-line text-warning"></i>
+                    <span>PHP 8.3</span>
+                </div>
+            </div>
+            <div class="footer-status-right">
+                <div class="footer-status-item d-none d-md-flex">
+                    <i class="ri-database-2-line text-info"></i>
+                    <span>mysql:v8.0</span>
+                </div>
+                <div class="footer-status-item status-online">
+                    <span class="status-dot"></span>
+                    <span>System Active</span>
+                </div>
+                <div class="footer-status-item">
+                    <span>&copy; 2026 LaraKit</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaraKit - Modern SaaS Starter Kit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="bg-grid-overlay"></div>
+
+    <!-- === NAVBAR === -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <div class="d-flex align-items-center justify-content-center bg-primary bg-opacity-10 border border-primary border-opacity-20 rounded-3 text-primary"
+                    style="width: 32px; height: 32px;">
+                    <i class="ri-braces-line fs-5 text-gradient"></i>
+                </div>
+                <span class="fw-bold position-relative">LaraKit<span class="text-gradient">.</span><span class="logo-status-dot" title="System Online"></span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex gap-2 mt-3 mt-lg-0 align-items-center">
+                    <button class="btn btn-icon-glass d-none d-md-inline-flex" title="Search page or run CLI commands (Ctrl+K)">
+                        <i class="ri-search-line"></i> <span class="fs-8 text-muted" style="font-family: var(--font-code);">Cmd+K</span>
+                    </button>
+                    <a href="#" class="btn btn-outline-glass">Login</a>
+                    <a href="#" class="btn btn-primary-glass">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO SECTION === -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 text-center text-lg-start mb-5 mb-lg-0" data-aos="fade-up">
+                    <span class="badge-glass-accent mb-3"><i class="ri-terminal-box-line me-1"></i> [SYSTEM] v1.0
+                        compiled successfully</span>
+                    <h1 class="display-3 fw-bold mb-4">
+                        Build your SaaS faster with <br> <span class="text-gradient">LaraKit & Butunix</span>
+                    </h1>
+                    <p class="lead mb-5 pe-lg-5 text-muted">
+                        The ultimate Laravel 13 starter kit equipped with Glassmorphism landing pages and Butunix Admin
+                        Dashboard. Launch your MVP in days, not months.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <a href="#" class="btn btn-primary-glass btn-lg px-4 btn-pulse-glow"><i
+                                class="ri-rocket-fill me-2"></i> Get Started</a>
+                        <a href="features.html" class="btn btn-outline-glass btn-lg px-4"><i
+                                class="ri-rocket-line me-2"></i> Explore Features</a>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
+                    <div class="position-relative">
+                        <div class="code-editor-window float-anim">
+                            <div class="code-editor-header">
+                                <div class="mac-dots">
+                                    <div class="mac-dot close"></div>
+                                    <div class="mac-dot minimize"></div>
+                                    <div class="mac-dot expand"></div>
+                                </div>
+                                <div class="code-editor-title" style="font-size: 0.725rem;">
+                                    app/Modules/Core/UserController.php</div>
+                                <div style="width: 30px;"></div>
+                            </div>
+                            <div class="code-editor-tabs">
+                                <div class="code-editor-tab active">
+                                    <i class="ri-code-s-slash-line text-primary"></i> UserController.php
+                                </div>
+                                <div class="code-editor-tab">
+                                    <i class="ri-settings-5-line text-muted"></i> config.json
+                                </div>
+                            </div>
+                            <div class="code-editor-body" style="font-size: 0.76rem;">
+                                <pre class="m-0"><code class="language-php" id="hero-code-editor"><span class="token-comment">// Laravel 13 Modular Controller</span>
+<span class="token-keyword">namespace</span> App\Modules\Core;
+
+<span class="token-keyword">class</span> <span class="token-class">UserController</span> <span class="token-keyword">extends</span> <span class="token-class">Controller</span>
+{
+    <span class="token-keyword">use</span> <span class="token-class">HasActivityLog</span>, <span class="token-class">HasEncryptedId</span>;
+
+    <span class="token-keyword">public</span> <span class="token-keyword">function</span> <span class="token-function">store</span>(<span class="token-class">Request</span> <span class="token-variable">$request</span>)
+    {
+        <span class="token-keyword">return</span> <span class="token-class">DB</span>::<span class="token-function">transaction</span>(<span class="token-keyword">function</span>() <span class="token-keyword">use</span> (<span class="token-variable">$request</span>) {
+            <span class="token-variable">$user</span> = <span class="token-class">User</span>::<span class="token-function">create</span>(<span class="token-variable">$request</span>-><span class="token-function">validated</span>());
+            
+            <span class="token-variable">$this</span>-><span class="token-function">logActivity</span>(<span class="token-string">'user.create'</span>, <span class="token-variable">$user</span>);
+            <span class="token-keyword">return</span> <span class="token-function">redirect</span>()-><span class="token-function">back</span>()
+                -><span class="token-function">with</span>(<span class="token-string">'success'</span>, <span class="token-function">__</span>(<span class="token-string">'user.created'</span>));
+        });
+    }
+}<span class="cursor-blink"></span></code></pre>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === LOGO CLOUD === -->
+    <section class="py-4 border-bottom border-secondary border-opacity-25">
+        <div class="container text-center">
+            <p class="text-uppercase fw-bold text-muted mb-4" style="letter-spacing: 2px; font-size: 0.85rem;">Trusted
+                by modern teams</p>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 gap-md-5 opacity-50">
+                <i class="ri-amazon-line fs-2"></i>
+                <i class="ri-netflix-line fs-2"></i>
+                <i class="ri-google-fill fs-2"></i>
+                <i class="ri-slack-line fs-2"></i>
+                <i class="ri-spotify-line fs-2"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- === HOW IT WORKS === -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-primary mb-3"><i class="ri-git-commit-line me-1"></i> Workflow</span>
+                <h2 class="fw-bold display-5 mb-3">Launch in 3 Easy Steps</h2>
+                <p class="lead text-muted">Skip the boilerplate. Go straight to building your core product.</p>
+            </div>
+            <div class="row g-4 position-relative">
+                <div class="col-md-4 text-center timeline-connect-line" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary border border-primary border-opacity-20 rounded-circle mb-4"
+                            style="width: 60px; height: 60px; font-family: var(--font-code);">
+                            <h4 class="m-0">01</h4>
+                        </div>
+                        <h4 class="fw-bold mb-3" style="font-family: var(--font-code);"><span
+                                class="token-keyword">function</span> setup()</h4>
+                        <p class="text-muted mb-0">Clone the repository and run <code>composer install</code>. The
+                            robust modular architecture sets up instantly.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center timeline-connect-line" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-20 rounded-circle mb-4"
+                            style="width: 60px; height: 60px; font-family: var(--font-code);">
+                            <h4 class="m-0">02</h4>
+                        </div>
+                        <h4 class="fw-bold mb-3" style="font-family: var(--font-code);"><span
+                                class="token-keyword">function</span> build()</h4>
+                        <p class="text-muted mb-0">Focus solely on your business rules. Auth routes, activity logging,
+                            and modules are pre-configured.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-accent bg-opacity-10 text-accent border border-accent border-opacity-20 rounded-circle mb-4"
+                            style="width: 60px; height: 60px; font-family: var(--font-code);">
+                            <h4 class="m-0">03</h4>
+                        </div>
+                        <h4 class="fw-bold mb-3" style="font-family: var(--font-code);"><span
+                                class="token-keyword">function</span> deploy()</h4>
+                        <p class="text-muted mb-0">Launch your production-ready, beautiful modular SaaS product to the
+                            world in record speed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FEATURES SECTION === -->
+    <section class="py-5" id="features">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold">Everything you need to scale</h2>
+                <p class="text-muted">Stop writing boilerplate code and focus on your business logic.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 rounded-4 h-100">
+                        <div class="feature-icon-wrapper text-primary">
+                            <i class="ri-secure-payment-line"></i>
+                        </div>
+                        <h4 class="mb-3">Authentication Ready</h4>
+                        <p class="mb-0 text-muted">Full authentication system out of the box with Activity Log tracking
+                            for security.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 rounded-4 h-100">
+                        <div class="feature-icon-wrapper text-secondary">
+                            <i class="ri-layout-masonry-line"></i>
+                        </div>
+                        <h4 class="mb-3">Butunix Dashboard</h4>
+                        <p class="mb-0 text-muted">Pre-configured Bootstrap 5.3 Admin Dashboard with beautiful dark
+                            mode.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-card-hover p-4 rounded-4 h-100">
+                        <div class="feature-icon-wrapper text-accent">
+                            <i class="ri-code-s-slash-line"></i>
+                        </div>
+                        <h4 class="mb-3">Developer Friendly</h4>
+                        <p class="mb-0 text-muted">Clean Architecture, Form Requests validation, and strict standard
+                            guidelines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === INSIDE THE BOX === -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge-glass-secondary mb-3">Inside The Box</span>
+                    <h2 class="fw-bold display-5 mb-4">Butunix Dashboard Included</h2>
+                    <p class="lead mb-4 text-muted">
+                        LaraKit comes bundled with the premium Butunix Admin template. Featuring a sleek dark mode, rich
+                        UI components, and fully responsive layouts.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-5">
+                        <li class="d-flex align-items-center gap-3">
+                            <div class="bg-success bg-opacity-25 text-success rounded-circle d-flex align-items-center justify-content-center"
+                                style="width:32px; height:32px;"><i class="ri-check-line"></i></div>
+                            <span class="fs-5">Pre-built DataTables & Trees</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <div class="bg-success bg-opacity-25 text-success rounded-circle d-flex align-items-center justify-content-center"
+                                style="width:32px; height:32px;"><i class="ri-check-line"></i></div>
+                            <span class="fs-5">Role & Permission Management</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <div class="bg-success bg-opacity-25 text-success rounded-circle d-flex align-items-center justify-content-center"
+                                style="width:32px; height:32px;"><i class="ri-check-line"></i></div>
+                            <span class="fs-5">Activity Log Trackers</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-panel p-3 rounded-4 position-relative">
+                        <!-- Mac window dots -->
+                        <div class="d-flex gap-2 mb-3 px-2 pt-2">
+                            <div class="rounded-circle bg-danger" style="width: 12px; height: 12px;"></div>
+                            <div class="rounded-circle bg-warning" style="width: 12px; height: 12px;"></div>
+                            <div class="rounded-circle bg-success" style="width: 12px; height: 12px;"></div>
+                        </div>
+                        <img src="assets/analytics_preview.png" alt="Dashboard Chart"
+                            class="img-fluid rounded-3 float-anim" style="opacity: 0.95;">
+
+                        <!-- Floating widget -->
+                        <div class="position-absolute bottom-0 start-0 translate-middle-x mb-4 glass-panel p-3 rounded-4 d-none d-md-block float-anim-delay"
+                            style="width: 220px;">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-primary bg-opacity-25 p-2 rounded-3 text-primary"><i
+                                        class="ri-funds-line fs-4"></i></div>
+                                <div>
+                                    <p class="text-muted m-0 fs-7">MRR Growth</p>
+                                    <h5 class="m-0 fw-bold">$12,450</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === TESTIMONIALS === -->
+    <section class="py-5 my-5 bg-black bg-opacity-25">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold display-5">Loved by Founders</h2>
+                <p class="lead text-muted">Don't just take our word for it.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                        </div>
+                        <p class="fs-5 mb-4">"LaraKit saved us at least 3 weeks of development time. The glassmorphism
+                            UI is just gorgeous straight out of the box."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=11" alt="User" class="rounded-circle"
+                                style="width: 50px;">
+                            <div>
+                                <h6 class="m-0 fw-bold">Sarah Jenkins</h6>
+                                <span class="text-muted fs-7">CTO, TechStart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                        </div>
+                        <p class="fs-5 mb-4">"The built-in roles, permissions, and activity logs are exactly what we
+                            needed for our enterprise clients. Flawless execution."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=33" alt="User" class="rounded-circle"
+                                style="width: 50px;">
+                            <div>
+                                <h6 class="m-0 fw-bold">David Chen</h6>
+                                <span class="text-muted fs-7">Lead Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-card-hover p-4 h-100 rounded-4">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
+                                class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                        </div>
+                        <p class="fs-5 mb-4">"I usually hate dealing with frontend design. LaraKit made it so easy to
+                            launch a beautiful SaaS without touching CSS."</p>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=5" alt="User" class="rounded-circle"
+                                style="width: 50px;">
+                            <div>
+                                <h6 class="m-0 fw-bold">Michael Ross</h6>
+                                <span class="text-muted fs-7">Solo Founder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === PRICING SECTION === -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold display-5">Simple, Transparent Pricing</h2>
+                <p class="lead text-muted">Pay once, own the code forever.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Basic Plan -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card h-100 d-flex flex-column">
+                        <div class="mb-4">
+                            <h4 class="fw-bold mb-2">Starter</h4>
+                            <p class="text-muted">Perfect for indie hackers and solo developers.</p>
+                            <h2 class="display-5 fw-bold mb-0">$49</h2>
+                            <small class="text-muted">one-time payment</small>
+                        </div>
+                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Laravel 13
+                                Core</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Butunix
+                                Dashboard (Basic)</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Standard Auth
+                                System</li>
+                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill"></i> Glassmorphism
+                                Landing Page</li>
+                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill"></i> Premium Support
+                            </li>
+                        </ul>
+                        <a href="pricing.html" class="btn btn-outline-glass w-100 mt-auto">Buy Starter</a>
+                    </div>
+                </div>
+
+                <!-- Pro Plan (Popular) -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card pricing-popular h-100 d-flex flex-column">
+                        <span class="popular-badge">Most Popular</span>
+                        <div class="mb-4">
+                            <h4 class="fw-bold mb-2">Pro</h4>
+                            <p class="text-muted">For serious startups and small teams.</p>
+                            <h2 class="display-5 fw-bold mb-0 text-gradient">$99</h2>
+                            <small class="text-muted">one-time payment</small>
+                        </div>
+                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Everything in
+                                Starter</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Butunix
+                                Dashboard (Full)</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Glassmorphism
+                                Landing Page</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Advanced Roles
+                                & Permissions</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> 6 Months
+                                Premium Support</li>
+                        </ul>
+                        <a href="pricing.html" class="btn btn-primary-glass w-100 mt-auto">Buy Pro</a>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card h-100 d-flex flex-column">
+                        <div class="mb-4">
+                            <h4 class="fw-bold mb-2">Enterprise</h4>
+                            <p class="text-muted">For agencies and large scale businesses.</p>
+                            <h2 class="display-5 fw-bold mb-0">$249</h2>
+                            <small class="text-muted">one-time payment</small>
+                        </div>
+                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Everything in
+                                Pro</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Multi-tenancy
+                                Support</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Figma Design
+                                Files</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Lifetime
+                                Updates</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> 1 Year
+                                Priority Support</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-outline-glass w-100 mt-auto">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FAQ PREVIEW === -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="fw-bold display-5 mb-4">Got Questions?</h2>
+                    <p class="lead mb-4 text-muted">We've gathered the most common questions from our users. If you
+                        can't find your answer, feel free to reach out to our team.</p>
+                    <a href="faq.html" class="btn btn-outline-glass">View All FAQ</a>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="accordion glass-accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    Can I use LaraKit for commercial projects?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Once you purchase a license, you can build and sell SaaS applications to your
+                                    customers without any royalty fees.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    Do I need to know Laravel?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, LaraKit is built on top of Laravel 13. While it handles the boilerplate, you
+                                    should be familiar with Laravel basics to add your custom logic.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    Are updates included?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all licenses include free lifetime updates for the LaraKit core and its
+                                    dependencies.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CTA SECTION === -->
+    <section class="py-5 mb-5">
+        <div class="container">
+            <div class="glass-panel p-5 text-center rounded-4 position-relative overflow-hidden" data-aos="zoom-in">
+                <!-- Decorative blur -->
+                <div class="position-absolute top-50 start-50 translate-middle"
+                    style="width: 300px; height: 300px; background: var(--bx-primary); filter: blur(100px); opacity: 0.15; z-index: -1;">
+                </div>
+
+                <h2 class="fw-bold mb-3">Ready to launch your SaaS?</h2>
+                <p class="lead mb-4 text-muted">Join hundreds of developers who build faster with LaraKit.</p>
+                <div class="d-flex flex-column align-items-center gap-3">
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="pricing.html" class="btn btn-primary-glass btn-lg px-5">Get LaraKit Today</a>
+                        <a href="#" class="btn btn-outline-glass btn-lg px-4"><i class="ri-book-open-line me-2"></i>
+                            Documentation</a>
+                    </div>
+                    <div class="mt-3 w-100" style="max-width: 480px;">
+                        <div class="terminal-box cursor-pointer text-start">
+                            <div>
+                                <span class="terminal-prompt">$</span>
+                                <span class="terminal-cmd" id="quickstart-cmd">composer create-project larakit/larakit
+                                    ./</span>
+                            </div>
+                            <button class="btn-copy-code" data-clipboard-target="#quickstart-cmd" title="Copy command">
+                                <i class="ri-file-copy-line"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer-glass">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2 mb-3" href="index.html">
+                        <div class="d-flex align-items-center justify-content-center bg-primary bg-opacity-10 border border-primary border-opacity-20 rounded-3 text-primary"
+                            style="width: 32px; height: 32px;">
+                            <i class="ri-braces-line fs-5 text-gradient"></i>
+                        </div>
+                        <span class="fs-4 fw-bold">LaraKit<span class="text-gradient">.</span></span>
+                    </a>
+                    <p class="mb-4 text-muted">The Laravel 13 SaaS Starter Kit designed to help you build faster and better.</p>
+                    
+                    <!-- Terminal Newsletter Widget -->
+                    <div class="terminal-newsletter-card mt-3">
+                        <div class="terminal-newsletter-header">
+                            <div class="d-flex gap-1 align-items-center">
+                                <span class="mac-dot bg-danger" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                                <span class="mac-dot bg-warning" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                                <span class="mac-dot bg-success" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+                            </div>
+                            <span class="text-muted small" style="font-family: var(--font-code); font-size: 0.7rem;">subscribe_newsletter.sh</span>
+                        </div>
+                        <div class="terminal-newsletter-body">
+                            <p class="m-0 text-muted" style="font-size: 0.75rem;">// Subscribe for core updates</p>
+                            <form class="terminal-newsletter-form" onsubmit="event.preventDefault(); window.bxToast('Subscribed successfully!', 'success'); this.reset();">
+                                <div class="terminal-newsletter-input-group">
+                                    <span class="terminal-newsletter-prompt">&gt; email:</span>
+                                    <input type="email" class="terminal-newsletter-input" placeholder="developer@domain.com" required autocomplete="off">
+                                    <button type="submit" class="terminal-newsletter-btn">run</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Product</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="features.html" class="footer-link">Features</a></li>
+                        <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Resources</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="footer-link">Documentation</a></li>
+                        <li><a href="faq.html" class="footer-link">FAQ</a></li>
+                        <li><a href="#" class="footer-link">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-3 text-white" style="font-family: var(--font-code); font-size: 0.9rem;"><span
+                            class="token-comment">// Legal</span></h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Code Editor Status Bar -->
+        <div class="footer-status-bar mt-5">
+            <div class="footer-status-left">
+                <div class="footer-status-item">
+                    <i class="ri-git-branch-line text-primary"></i>
+                    <span>main</span>
+                </div>
+                <div class="footer-status-item d-none d-sm-flex">
+                    <i class="ri-wifi-line text-success"></i>
+                    <span>ping:14ms</span>
+                </div>
+                <div class="footer-status-item">
+                    <i class="ri-code-s-slash-line text-warning"></i>
+                    <span>PHP 8.3</span>
+                </div>
+            </div>
+            <div class="footer-status-right">
+                <div class="footer-status-item d-none d-md-flex">
+                    <i class="ri-database-2-line text-info"></i>
+                    <span>mysql:v8.0</span>
+                </div>
+                <div class="footer-status-item status-online">
+                    <span class="status-dot"></span>
+                    <span>System Active</span>
+                </div>
+                <div class="footer-status-item">
+                    <span>&copy; 2026 LaraKit</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
