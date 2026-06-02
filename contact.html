@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <canvas id="code-rain" aria-hidden="true"></canvas>
     <div class="bg-grid-overlay"></div>
 
     <!-- === NAVBAR === -->
@@ -55,6 +56,46 @@
             <p class="lead mx-auto mb-0 text-muted" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="100">
                 Have questions about LaraKit? Our team is here to help you build your next big thing.
             </p>
+        </div>
+    </section>
+
+    <!-- === CONTACT CHANNELS === -->
+    <section class="pb-2">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+                    <div class="glass-panel glass-card-hover p-4 h-100 text-center">
+                        <div class="feature-icon-wrapper text-primary mx-auto"><i class="ri-customer-service-2-line"></i></div>
+                        <h6 class="fw-bold mb-1">Technical Support</h6>
+                        <p class="text-muted small mb-2">Bug reports &amp; setup help.</p>
+                        <a href="mailto:support@larakit.dev" class="text-decoration-none small" style="color: var(--bx-accent); font-family: var(--font-code);">support@larakit.dev</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-card-hover p-4 h-100 text-center">
+                        <div class="feature-icon-wrapper text-secondary mx-auto"><i class="ri-briefcase-line"></i></div>
+                        <h6 class="fw-bold mb-1">Sales &amp; Licensing</h6>
+                        <p class="text-muted small mb-2">Enterprise &amp; volume deals.</p>
+                        <a href="mailto:sales@larakit.dev" class="text-decoration-none small" style="color: var(--bx-accent); font-family: var(--font-code);">sales@larakit.dev</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="glass-panel glass-card-hover p-4 h-100 text-center">
+                        <div class="feature-icon-wrapper text-accent mx-auto"><i class="ri-discord-line"></i></div>
+                        <h6 class="fw-bold mb-1">Community</h6>
+                        <p class="text-muted small mb-2">Chat with other builders.</p>
+                        <a href="#" class="text-decoration-none small" style="color: var(--bx-accent); font-family: var(--font-code);">Join Discord</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-card-hover p-4 h-100 text-center">
+                        <div class="feature-icon-wrapper text-primary mx-auto"><i class="ri-github-line"></i></div>
+                        <h6 class="fw-bold mb-1">Source &amp; Issues</h6>
+                        <p class="text-muted small mb-2">Track modules &amp; releases.</p>
+                        <a href="https://github.com/ferland-codes/larakit-modules" class="text-decoration-none small" style="color: var(--bx-accent); font-family: var(--font-code);">github.com/larakit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -115,6 +156,28 @@
                         <div class="code-editor-body flex-grow-1 live-json-pane" style="font-size: 0.825rem; min-height: 380px;">
                             <pre class="m-0"><code id="json-live-preview">// JSON draft builds dynamically...</code></pre>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SUPPORT INFO STRIP === -->
+    <section class="pb-5 mb-4">
+        <div class="container">
+            <div class="glass-panel p-4 rounded-4" data-aos="fade-up">
+                <div class="row g-4 align-items-center text-center text-md-start">
+                    <div class="col-md-4 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-time-line fs-3 text-primary"></i>
+                        <div><h6 class="m-0 fw-bold">~4 hour response</h6><span class="text-muted small">Average first reply</span></div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-calendar-check-line fs-3 text-accent"></i>
+                        <div><h6 class="m-0 fw-bold">Mon–Fri, 09:00–18:00</h6><span class="text-muted small">GMT+7 (Jakarta)</span></div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <span class="footer-status-item status-online"><span class="status-dot"></span></span>
+                        <div><h6 class="m-0 fw-bold">All systems operational</h6><span class="text-muted small">status.larakit.dev</span></div>
                     </div>
                 </div>
             </div>

@@ -1,25 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+/* Typography: UI/UX Pro Max "Tech Startup" (Space Grotesk / DM Sans) + "Developer Mono" (JetBrains Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+/*
+ * ==========================================================================
+ * DESIGN TOKENS — rebuilt with the UI/UX Pro Max skill
+ * Style:  Glassmorphism (frosted glass, layered depth, light source)
+ * Palette: "Coding Bootcamp / Developer Tool" → terminal dark + run green
+ * Fonts:  Space Grotesk / DM Sans / JetBrains Mono (tech / developer)
+ * ==========================================================================
+ */
 :root {
-  --bx-primary: #6366F1;
-  --bx-primary-rgb: 99, 102, 241;
-  --bx-secondary: #EC4899;
-  --bx-secondary-rgb: 236, 72, 153;
-  --bx-accent: #0EA5E9;
-  --bx-accent-rgb: 14, 165, 233;
-  --bx-terminal: #10B981;
+  /* Brand / accent palette (terminal-dark + run green) */
+  --bx-primary: #22C55E;          /* run / success green — skill CTA */
+  --bx-primary-rgb: 34, 197, 94;
+  --bx-secondary: #38BDF8;        /* sky / info */
+  --bx-secondary-rgb: 56, 189, 248;
+  --bx-accent: #06B6D4;           /* cyan — terminal accent */
+  --bx-accent-rgb: 6, 182, 212;
+  --bx-terminal: #10B981;         /* emerald — syntax strings / online dot */
   --bx-terminal-rgb: 16, 185, 129;
-  --bx-cyan: #06B6D4;
-  --bx-cyan-rgb: 6, 182, 212;
-  --bx-bg: #04050e;
-  --bx-bg-glass: rgba(255, 255, 255, 0.02);
-  --bx-border-glass: rgba(255, 255, 255, 0.08);
+  --bx-cyan: #22D3EE;
+  --bx-cyan-rgb: 34, 211, 238;
+
+  /* Terminal-dark surfaces (skill: bg #020617, surfaces #0F172A / #1E293B) */
+  --bx-bg: #020617;
+  --bx-surface: #0F172A;
+  --bx-surface-2: #1E293B;
+  --bx-bg-glass: rgba(255, 255, 255, 0.03);
+  --bx-border-glass: rgba(255, 255, 255, 0.10);
   --bx-text: #F8FAFC;
   --bx-text-muted: #94A3B8;
 
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-code: 'Fira Code', 'Courier New', Courier, monospace;
+  /* Glassmorphism design-system variables (UI/UX Pro Max spec) */
+  --blur-amount: 20px;
+  --glass-opacity: 0.06;
+  --glass-border: rgba(255, 255, 255, 0.12);
+
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Align Bootstrap utility colors (.text-primary, .bg-success, .text-info ...) */
+  --bs-primary: #22C55E;
+  --bs-primary-rgb: 34, 197, 94;
+  --bs-secondary: #38BDF8;
+  --bs-secondary-rgb: 56, 189, 248;
+  --bs-success: #22C55E;
+  --bs-success-rgb: 34, 197, 94;
+  --bs-info: #22D3EE;
+  --bs-info-rgb: 34, 211, 238;
+  --bs-warning: #F59E0B;
+  --bs-warning-rgb: 245, 158, 11;
+  --bs-danger: #EF4444;
+  --bs-danger-rgb: 239, 68, 68;
+  --bs-link-color-rgb: 34, 197, 94;
+  --bs-link-hover-color-rgb: 6, 182, 212;
 }
 
 body {
@@ -33,6 +68,12 @@ body {
 .text-muted {
   color: var(--bx-text-muted) !important;
 }
+
+/* On-theme accent utilities (used in markup, not part of Bootstrap) */
+.text-accent { color: var(--bx-accent) !important; }
+.bg-accent { background-color: rgba(var(--bx-accent-rgb), var(--bs-bg-opacity, 1)) !important; }
+.border-accent { border-color: rgba(var(--bx-accent-rgb), var(--bs-border-opacity, 1)) !important; }
+.text-terminal { color: var(--bx-terminal) !important; }
 
 /* 1. Dot & Lines Blueprint Grid Background Pattern Overlay */
 .bg-grid-overlay {
@@ -53,13 +94,37 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, #000 45%, transparent 100%);
 }
 
+/* 1b. Ambient "code-rain" canvas — drifting monospace glyphs (driven by main.js).
+   Masked faint behind the central reading column so body text keeps its contrast;
+   sits above the aurora (-3) but below the blueprint grid (-1) and all content. */
+#code-rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.5;
+  /* Keep the canvas on its own GPU layer so it keeps painting while the
+     page scrolls (prevents the "animation pauses on scroll" jank). */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 40%, transparent 6%, rgba(0, 0, 0, 0.5) 48%, #000 96%);
+  mask-image: radial-gradient(ellipse 88% 78% at 50% 40%, transparent 6%, rgba(0, 0, 0, 0.5) 48%, #000 96%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #code-rain { opacity: 0.22; }
+}
+
 /* 2. Fluid Aurora Glows (Advanced modern fluid animation) */
 body::before,
 body::after {
   content: "";
   position: fixed;
   filter: blur(140px);
-  z-index: -2;
+  z-index: -3;
   pointer-events: none;
   mix-blend-mode: screen;
 }
@@ -69,7 +134,7 @@ body::before {
   height: 80vw;
   max-width: 900px;
   max-height: 900px;
-  background: radial-gradient(circle, rgba(var(--bx-primary-rgb), 0.4) 0%, rgba(var(--bx-accent-rgb), 0.08) 50%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba(var(--bx-primary-rgb), 0.35) 0%, rgba(var(--bx-accent-rgb), 0.10) 50%, rgba(0,0,0,0) 70%);
   top: -30%;
   left: -20%;
   animation: fluidAurora1 25s ease-in-out infinite alternate;
@@ -80,7 +145,7 @@ body::after {
   height: 70vw;
   max-width: 800px;
   max-height: 800px;
-  background: radial-gradient(circle, rgba(var(--bx-secondary-rgb), 0.3) 0%, rgba(var(--bx-primary-rgb), 0.04) 50%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba(var(--bx-accent-rgb), 0.28) 0%, rgba(var(--bx-secondary-rgb), 0.06) 50%, rgba(0,0,0,0) 70%);
   bottom: -25%;
   right: -15%;
   animation: fluidAurora2 30s ease-in-out infinite alternate-reverse;
@@ -130,17 +195,19 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   letter-spacing: -0.5px;
 }
 
-/* 3. Upgraded Modern Glassmorphism System */
+/* 3. Upgraded Modern Glassmorphism System
+   (UI/UX Pro Max checklist: backdrop blur, translucent layer, 1px light border,
+    light-source reflection, Z-depth) */
 .glass-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(135deg, rgba(255, 255, 255, calc(var(--glass-opacity) + 0.01)) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
   border-radius: 1.5rem;
-  box-shadow: 
+  box-shadow:
     0 20px 45px -15px rgba(0, 0, 0, 0.7),
-    0 1px 0px 0 rgba(255, 255, 255, 0.12) inset,
-    0 0 0 1px rgba(255, 255, 255, 0.01) inset;
+    0 1px 0px 0 rgba(255, 255, 255, 0.14) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -157,7 +224,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   -webkit-backdrop-filter: blur(32px);
   box-shadow: 
     0 30px 60px -20px rgba(0, 0, 0, 0.8),
-    0 0 35px -10px rgba(99, 102, 241, 0.25),
+    0 0 35px -10px rgba(34, 197, 94, 0.25),
     0 1px 0px 0 rgba(255, 255, 255, 0.2) inset,
     0 0 0 1px rgba(255, 255, 255, 0.02) inset;
 }
@@ -184,10 +251,10 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .glass-nav.scrolled {
   background: rgba(4, 5, 14, 0.75);
-  border-color: rgba(99, 102, 241, 0.25);
+  border-color: rgba(34, 197, 94, 0.25);
   box-shadow: 
     0 20px 45px -15px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(99, 102, 241, 0.15),
+    0 0 20px rgba(34, 197, 94, 0.15),
     0 1px 0px 0 rgba(255, 255, 255, 0.1) inset;
   margin-top: 0.85rem;
   padding: 0.45rem 1.2rem;
@@ -248,6 +315,38 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
+/* Navbar CTA buttons — slim them down & use the monospace "coding" font
+   so Login / Get Started match the nav links and Cmd+K pill */
+.glass-nav .btn-outline-glass,
+.glass-nav .btn-primary-glass {
+  padding: 0.45rem 1.15rem;
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.glass-nav .btn-primary-glass {
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(var(--bx-primary-rgb), 0.25);
+}
+
+.glass-nav .btn-primary-glass:hover {
+  box-shadow: 0 4px 16px rgba(var(--bx-primary-rgb), 0.4);
+}
+
+/* On mobile the collapsed menu stacks the CTAs full-width for a tidy tap target */
+@media (max-width: 991px) {
+  .glass-nav .navbar-collapse .btn-outline-glass,
+  .glass-nav .navbar-collapse .btn-primary-glass {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
 .glass-nav .nav-link {
   color: var(--bx-text-muted);
   font-family: var(--font-code);
@@ -306,19 +405,32 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .glass-nav .nav-link.active {
   color: #fff !important;
-  background: rgba(99, 102, 241, 0.08) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  padding-left: 1.55rem !important;
+  padding-right: 1.55rem !important;
 }
 
-.glass-nav .nav-link.active:hover {
-  padding-left: 1.25rem !important;
-  padding-right: 1.25rem !important;
-}
-
+/* Active route stays "locked open" in coding brackets — [ Home ] — in the
+   green accent (current), distinct from the cyan brackets used on hover. */
 .glass-nav .nav-link.active::before,
 .glass-nav .nav-link.active::after {
-  display: none;
+  display: block;
+  opacity: 1;
+  color: var(--bx-primary);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(var(--bx-primary-rgb), 0.5);
+  transform: translateY(-50%) translateX(0);
+}
+
+.glass-nav .nav-link.active::before { left: 0.65rem; }
+.glass-nav .nav-link.active::after { right: 0.65rem; }
+
+/* Keep the active pill steady (no padding shift) when hovered */
+.glass-nav .nav-link.active:hover {
+  padding-left: 1.55rem !important;
+  padding-right: 1.55rem !important;
 }
 
 @media (max-width: 991px) {
@@ -387,7 +499,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
     0 35px 80px -20px rgba(0, 0, 0, 0.9),
-    0 0 50px -10px rgba(99, 102, 241, 0.2),
+    0 0 50px -10px rgba(34, 197, 94, 0.2),
     0 1px 0px 0 rgba(255, 255, 255, 0.15) inset;
   border-radius: 1.25rem;
   overflow: hidden;
@@ -455,8 +567,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .command-palette-item:hover,
 .command-palette-item.selected {
-  background: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.25);
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.25);
   color: #fff;
 }
 
@@ -481,8 +593,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .command-palette-item:hover .command-palette-item-icon,
 .command-palette-item.selected .command-palette-item-icon {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
   color: var(--bx-cyan);
 }
 
@@ -554,22 +666,22 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   letter-spacing: -0.2px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
-    0 4px 15px rgba(99, 102, 241, 0.25),
-    0 0 0 1px rgba(99, 102, 241, 0.1);
+    0 4px 15px rgba(34, 197, 94, 0.25),
+    0 0 0 1px rgba(34, 197, 94, 0.1);
 }
 
 .btn-primary-glass:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 8px 25px rgba(99, 102, 241, 0.4),
-    0 0 0 1px rgba(99, 102, 241, 0.2);
+    0 8px 25px rgba(34, 197, 94, 0.4),
+    0 0 0 1px rgba(34, 197, 94, 0.2);
   color: #fff;
   filter: brightness(1.1);
 }
 
 .btn-primary-glass:active {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
 }
 
 .btn-outline-glass {
@@ -610,8 +722,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .badge-glass-primary {
-  background: rgba(99, 102, 241, 0.1) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  background: rgba(34, 197, 94, 0.1) !important;
+  border: 1px solid rgba(34, 197, 94, 0.2) !important;
   color: var(--bx-primary) !important;
   padding: 0.5rem 1rem !important;
   border-radius: 50rem !important;
@@ -622,8 +734,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .badge-glass-secondary {
-  background: rgba(236, 72, 153, 0.1) !important;
-  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+  background: rgba(6, 182, 212, 0.1) !important;
+  border: 1px solid rgba(6, 182, 212, 0.2) !important;
   color: var(--bx-secondary) !important;
   padding: 0.5rem 1rem !important;
   border-radius: 50rem !important;
@@ -645,7 +757,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--bx-primary) 0%, var(--bx-secondary) 50%, var(--bx-accent) 100%);
+  background: linear-gradient(135deg, var(--bx-primary) 0%, var(--bx-terminal) 35%, var(--bx-accent) 70%, var(--bx-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -660,16 +772,16 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.15);
   color: var(--bx-accent);
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .glass-card-hover:hover .feature-icon-wrapper {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
   color: var(--bx-secondary);
   transform: scale(1.05);
 }
@@ -701,20 +813,20 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .pricing-popular {
-  border: 1px solid rgba(99, 102, 241, 0.5) !important;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(255, 255, 255, 0.005) 100%) !important;
+  border: 1px solid rgba(34, 197, 94, 0.5) !important;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(255, 255, 255, 0.005) 100%) !important;
   box-shadow: 
-    0 15px 35px -10px rgba(99, 102, 241, 0.2),
-    0 0 0 1px rgba(99, 102, 241, 0.2) inset !important;
+    0 15px 35px -10px rgba(34, 197, 94, 0.2),
+    0 0 0 1px rgba(34, 197, 94, 0.2) inset !important;
   position: relative;
 }
 
 .pricing-popular:hover {
-  border-color: rgba(99, 102, 241, 0.75) !important;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+  border-color: rgba(34, 197, 94, 0.75) !important;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
   box-shadow: 
     0 30px 60px -15px rgba(0, 0, 0, 0.8),
-    0 0 45px -10px rgba(99, 102, 241, 0.4),
+    0 0 45px -10px rgba(34, 197, 94, 0.4),
     0 1px 0px 0 rgba(255, 255, 255, 0.2) inset !important;
 }
 
@@ -730,7 +842,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
 }
 
 /* 7. Premium Accordions */
@@ -802,9 +914,9 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .form-glass:focus {
   background: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(99, 102, 241, 0.6) !important;
+  border-color: rgba(34, 197, 94, 0.6) !important;
   box-shadow: 
-    0 0 20px rgba(99, 102, 241, 0.2),
+    0 0 20px rgba(34, 197, 94, 0.2),
     0 1px 0px 0 rgba(255, 255, 255, 0.08) inset !important;
   outline: none;
 }
@@ -838,9 +950,9 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.35); }
-  70% { box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.35); }
+  70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
 
 .btn-pulse-glow {
@@ -949,8 +1061,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .terminal-newsletter-input-group:focus-within {
-  border-color: rgba(99, 102, 241, 0.6);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+  border-color: rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.15);
 }
 
 .terminal-newsletter-prompt {
@@ -971,8 +1083,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .terminal-newsletter-btn {
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
   color: var(--bx-primary);
   font-family: var(--font-code);
   font-size: 0.75rem;
@@ -985,7 +1097,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 .terminal-newsletter-btn:hover {
   background: var(--bx-primary);
   color: #fff;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
 }
 
 /* ==========================================
@@ -1136,7 +1248,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   border-color: rgba(255, 255, 255, 0.15);
   box-shadow: 
     0 40px 80px -20px rgba(0, 0, 0, 0.9),
-    0 0 40px -10px rgba(99, 102, 241, 0.15),
+    0 0 40px -10px rgba(34, 197, 94, 0.15),
     0 1px 0px 0 rgba(255, 255, 255, 0.15) inset;
 }
 
@@ -1209,16 +1321,19 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   position: relative;
 }
 
-/* Syntax Highlighting */
-.token-keyword { color: #EC4899; font-weight: 600; }
-.token-string { color: #10B981; }
+/* Syntax Highlighting — tuned to the terminal/run-green palette */
+.token-keyword { color: #C084FC; font-weight: 600; }
+.token-string { color: #34D399; }
 .token-comment { color: #64748B; font-style: italic; }
-.token-function { color: #3B82F6; }
-.token-variable { color: #0EA5E9; }
-.token-class { color: #F59E0B; }
+.token-function { color: #38BDF8; }
+.token-variable { color: #22D3EE; }
+.token-class { color: #FBBF24; }
 .token-operator { color: #F8FAFC; }
 .token-type { color: #A855F7; }
-.token-number { color: #F59E0B; }
+.token-number { color: #FBBF24; }
+/* Used by the live JSON visualizer in main.js */
+.token-boolean { color: #C084FC; }
+.token-null { color: #F472B6; }
 
 /* Interactive Terminal & Cli Widgets */
 .btn-copy-code {
@@ -1297,7 +1412,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 }
 
 .file-tree-item.active {
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(34, 197, 94, 0.08);
   color: #fff;
   font-weight: 500;
   border-left: 2px solid var(--bx-primary);
@@ -1330,8 +1445,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   background: conic-gradient(
     from 0deg,
     transparent 30%,
-    rgba(99, 102, 241, 0.8) 50%,
-    rgba(6, 182, 212, 0.8) 70%,
+    rgba(var(--bx-primary-rgb), 0.8) 50%,
+    rgba(var(--bx-accent-rgb), 0.8) 70%,
     transparent 100%
   );
   animation: rotateGlow 6s linear infinite;
@@ -1341,7 +1456,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 .rotating-glow-card-inner {
   position: relative;
   z-index: 1;
-  background: #04050e;
+  background: var(--bx-bg);
   border-radius: calc(2rem - 1px);
 }
 
@@ -1382,12 +1497,106 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   left: calc(50% + 80px);
   width: calc(100% - 160px);
   height: 2px;
-  background: linear-gradient(90deg, rgba(99, 102, 241, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
+  background: linear-gradient(90deg, rgba(var(--bx-primary-rgb), 0.35) 0%, rgba(var(--bx-accent-rgb), 0.35) 100%);
   z-index: -1;
 }
 
 @media (max-width: 767px) {
   .timeline-connect-line::after {
     display: none;
+  }
+}
+
+/* FAQ category label */
+.faq-group-label {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0.85rem;
+  padding-left: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* Pricing comparison table */
+.pricing-compare-table { color: var(--bx-text); }
+.pricing-compare-table thead th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pricing-compare-table tbody td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.95rem;
+}
+.pricing-compare-table tbody tr:last-child td { border-bottom: 0; }
+.pricing-compare-table tbody tr { transition: background 0.2s ease; }
+.pricing-compare-table tbody tr:hover td { background: rgba(var(--bx-primary-rgb), 0.04); }
+.pricing-compare-table tbody td:first-child { color: var(--bx-text-muted); }
+.pricing-compare-table tbody tr:hover td:first-child { color: var(--bx-text); }
+
+/* ==========================================================================
+   ACCESSIBILITY LAYER (UI/UX Pro Max pre-delivery checklist)
+   - Visible keyboard focus, reduced-motion support, pointer cursors
+   ========================================================================== */
+
+/* Visible focus ring for keyboard navigation (skill: focus-states) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.nav-link:focus-visible,
+.accordion-button:focus-visible,
+.file-tree-item:focus-visible,
+.command-palette-item:focus-visible,
+.terminal-box:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--bx-cyan);
+  outline-offset: 2px;
+  border-radius: 0.4rem;
+}
+
+/* Pointer cursor on all interactive elements (skill: cursor-pointer) */
+.btn,
+.nav-link,
+.accordion-button,
+.file-tree-item,
+.command-palette-item,
+.terminal-box,
+.code-editor-tab,
+.btn-copy-code,
+.btn-icon-glass,
+.terminal-newsletter-btn,
+.footer-status-item,
+[role="button"] {
+  cursor: pointer;
+}
+
+.file-tree-item[style*="cursor: default"],
+.footer-status-item {
+  cursor: default;
+}
+
+/* Respect users who prefer reduced motion (skill: reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::before,
+  body::after,
+  .float-anim,
+  .float-anim-delay,
+  .btn-pulse-glow,
+  .rotating-glow-card::before,
+  .logo-status-dot::after,
+  .footer-status-item.status-online .status-dot::after,
+  .cursor-blink::after {
+    animation: none !important;
   }
 }

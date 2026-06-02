@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <canvas id="code-rain" aria-hidden="true"></canvas>
     <div class="bg-grid-overlay"></div>
 
     <!-- === NAVBAR === -->
@@ -147,6 +148,92 @@
         </div>
     </section>
 
+    <!-- === TRUST / GUARANTEE BAR === -->
+    <section class="pb-2">
+        <div class="container">
+            <div class="glass-panel p-4 rounded-4" data-aos="fade-up">
+                <div class="row g-4 text-center text-md-start">
+                    <div class="col-md-3 col-6 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-shield-check-line fs-3 text-primary"></i>
+                        <div><h6 class="m-0 fw-bold">Pay Once</h6><span class="text-muted small">No subscriptions</span></div>
+                    </div>
+                    <div class="col-md-3 col-6 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-refresh-line fs-3 text-accent"></i>
+                        <div><h6 class="m-0 fw-bold">Lifetime Updates</h6><span class="text-muted small">Pro &amp; Enterprise</span></div>
+                    </div>
+                    <div class="col-md-3 col-6 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-arrow-go-back-line fs-3 text-secondary"></i>
+                        <div><h6 class="m-0 fw-bold">14-Day Refund</h6><span class="text-muted small">No questions asked</span></div>
+                    </div>
+                    <div class="col-md-3 col-6 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+                        <i class="ri-git-repository-private-line fs-3 text-primary"></i>
+                        <div><h6 class="m-0 fw-bold">Full Source</h6><span class="text-muted small">You own the code</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FEATURE COMPARISON TABLE === -->
+    <section class="py-5 mt-4">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-accent mb-3"><i class="ri-equalizer-line me-1"></i> Compare plans</span>
+                <h2 class="fw-bold display-6 mb-3">What's in every license</h2>
+            </div>
+            <div class="glass-panel p-2 p-md-4 rounded-4" data-aos="fade-up">
+                <div class="table-responsive">
+                    <table class="table table-borderless align-middle mb-0 pricing-compare-table">
+                        <thead>
+                            <tr class="text-muted" style="font-family: var(--font-code); font-size: 0.85rem;">
+                                <th scope="col" class="py-3">Feature</th>
+                                <th scope="col" class="text-center py-3">Starter</th>
+                                <th scope="col" class="text-center py-3 text-gradient fw-bold">Pro</th>
+                                <th scope="col" class="text-center py-3">Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Laravel 13 Modular Core</td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Butunix Admin Dashboard</td><td class="text-center text-muted small">Basic</td><td class="text-center text-success small fw-semibold">Full</td><td class="text-center text-success small fw-semibold">Full</td></tr>
+                            <tr><td>Glassmorphism Landing Page</td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Auth + Google OAuth (Socialite)</td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Roles &amp; Permissions</td><td class="text-center text-muted small">Basic</td><td class="text-center text-success small fw-semibold">Advanced</td><td class="text-center text-success small fw-semibold">Advanced</td></tr>
+                            <tr><td>Realtime Activity Log (Reverb)</td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Multi-language (EN / ID)</td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Installable Modules <span class="text-muted small">(7)</span></td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center text-success small fw-semibold">All&nbsp;7</td><td class="text-center text-success small fw-semibold">All&nbsp;7</td></tr>
+                            <tr><td>Multi-tenancy Support</td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Figma Design Files</td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-close-line text-muted"></i></td><td class="text-center"><i class="ri-check-line text-success"></i></td></tr>
+                            <tr><td>Updates</td><td class="text-center text-muted small">1 Year</td><td class="text-center text-success small fw-semibold">Lifetime</td><td class="text-center text-success small fw-semibold">Lifetime</td></tr>
+                            <tr><td>Support</td><td class="text-center text-muted small">Community</td><td class="text-center text-success small fw-semibold">6mo Premium</td><td class="text-center text-success small fw-semibold">1yr Priority</td></tr>
+                            <tr><td>Commercial License</td><td class="text-center text-muted small">1 project</td><td class="text-center text-success small fw-semibold">Unlimited</td><td class="text-center text-success small fw-semibold">Unlimited</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === MODULE ADD-ONS === -->
+    <section class="py-5 border-top border-secondary border-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-secondary mb-3"><i class="ri-puzzle-line me-1"></i> Included with Pro &amp; Enterprise</span>
+                <h2 class="fw-bold display-6 mb-3">7 Modules. No extra charge.</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 680px;">Every premium extension is bundled in — install only what you need, when you need it.</p>
+            </div>
+            <div class="row g-3" data-aos="fade-up">
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-folder-4-line fs-4 text-primary"></i><div><h6 class="m-0 fw-semibold">Storage Manager</h6><span class="text-muted small">Private + public files</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-mail-line fs-4 text-secondary"></i><div><h6 class="m-0 fw-semibold">Email Manager</h6><span class="text-muted small">SMTP / IMAP inbox</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-robot-2-line fs-4 text-accent"></i><div><h6 class="m-0 fw-semibold">AI Assistant</h6><span class="text-muted small">Multi-LLM + RAG</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-notification-3-line fs-4 text-primary"></i><div><h6 class="m-0 fw-semibold">Notifications</h6><span class="text-muted small">6 channels</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-whatsapp-line fs-4 text-secondary"></i><div><h6 class="m-0 fw-semibold">WA Gateway</h6><span class="text-muted small">Self-hosted engine</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-bar-chart-box-line fs-4 text-accent"></i><div><h6 class="m-0 fw-semibold">Report Builder</h6><span class="text-muted small">PDF &amp; Excel</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><div class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center gap-3"><i class="ri-database-2-line fs-4 text-primary"></i><div><h6 class="m-0 fw-semibold">Database Backup</h6><span class="text-muted small">Scheduled snapshots</span></div></div></div>
+                <div class="col-md-6 col-lg-3"><a href="features.html" class="glass-panel glass-card-hover p-3 h-100 d-flex align-items-center justify-content-center gap-2 text-decoration-none" style="color: var(--bx-accent);"><span class="fw-semibold">Explore all modules</span><i class="ri-arrow-right-line"></i></a></div>
+            </div>
+        </div>
+    </section>
+
     <!-- === PRICING COMPARISON MATRIX (JSON/CODE STYLE) === -->
     <section class="py-5 mb-5 border-top border-secondary border-opacity-10">
         <div class="container" style="max-width: 900px;">
@@ -190,6 +277,37 @@
   }
 }</code></pre>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === PRICING FAQ === -->
+    <section class="py-5 mb-5 border-top border-secondary border-opacity-10">
+        <div class="container" style="max-width: 820px;">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-glass-secondary mb-3"><i class="ri-question-answer-line me-1"></i> Billing questions</span>
+                <h2 class="fw-bold display-6 mb-0">Before you buy</h2>
+            </div>
+            <div class="accordion glass-accordion" id="pricingFaq" data-aos="fade-up">
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pf1">Is this really a one-time payment?</button></h2>
+                    <div id="pf1" class="accordion-collapse collapse" data-bs-parent="#pricingFaq"><div class="accordion-body">Yes. Every plan is a single one-time payment — no monthly or annual subscription. Pro and Enterprise also include lifetime updates to the LaraKit core.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pf2">Do I get all 7 modules?</button></h2>
+                    <div id="pf2" class="accordion-collapse collapse" data-bs-parent="#pricingFaq"><div class="accordion-body">Pro and Enterprise include all seven installable modules (Storage, Email, AI Assistant, Notifications, WA Gateway, Report Builder and Database Backup) at no extra cost. The Starter plan ships with the core only.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pf3">Can I use it for client projects?</button></h2>
+                    <div id="pf3" class="accordion-collapse collapse" data-bs-parent="#pricingFaq"><div class="accordion-body">Pro and Enterprise grant an unlimited commercial license — build and ship unlimited SaaS apps for yourself or clients, with no royalties. Starter is limited to a single project.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pf4">What's your refund policy?</button></h2>
+                    <div id="pf4" class="accordion-collapse collapse" data-bs-parent="#pricingFaq"><div class="accordion-body">If LaraKit isn't the right fit, email us within 14 days of purchase for a full refund — no questions asked.</div></div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <span class="text-muted">Still unsure? </span><a href="contact.html" class="text-decoration-none" style="color: var(--bx-accent);">Talk to us <i class="ri-arrow-right-line"></i></a>
             </div>
         </div>
     </section>

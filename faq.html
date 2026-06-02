@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <canvas id="code-rain" aria-hidden="true"></canvas>
     <div class="bg-grid-overlay"></div>
 
     <!-- === NAVBAR === -->
@@ -68,7 +69,7 @@
                         <div class="mac-dot minimize"></div>
                         <div class="mac-dot expand"></div>
                     </div>
-                    <div class="code-editor-title" style="font-size: 0.75rem;">larakit-saas/docs/faq.json</div>
+                    <div class="code-editor-title" style="font-size: 0.75rem;">larakit/docs/faq.json</div>
                     <div style="width: 30px;"></div>
                 </div>
                 <div class="code-editor-tabs">
@@ -76,19 +77,22 @@
                         <i class="ri-question-line text-primary"></i> endpoints.yaml
                     </div>
                 </div>
-                <div class="code-editor-body p-4">
+                <div class="code-editor-body p-3 p-md-4">
                     <div class="accordion glass-accordion border-0" id="faqAccordion">
-                        
+
+                        <!-- // general -->
+                        <p class="faq-group-label"><span class="token-comment">// general</span></p>
+
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" style="font-family: var(--font-code); font-size: 0.9rem;">
-                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/api/v1/faq/commercial-use"</span>
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/what-is-larakit"</span>
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Can I use LaraKit for commercial projects?</strong>
-                                    Yes! Once you purchase a license, you can build and sell SaaS applications to your customers without any royalty fees.
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">What exactly is LaraKit?</strong>
+                                    LaraKit is a Laravel 13 modular SaaS starter kit. It bundles the Butunix admin dashboard, a glassmorphism landing page, authentication, roles &amp; permissions, realtime activity logging and seven installable feature modules — so you start from a working product, not an empty <code>composer create-project</code>.
                                 </div>
                             </div>
                         </div>
@@ -96,13 +100,13 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" style="font-family: var(--font-code); font-size: 0.9rem;">
-                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/api/v1/faq/laravel-13-prereq"</span>
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/commercial-use"</span>
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Do I need to know Laravel?</strong>
-                                    Yes, LaraKit is built on top of Laravel 13. While it handles the boilerplate, you should be familiar with Laravel basics to add your custom logic.
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Can I use LaraKit for commercial projects?</strong>
+                                    Yes. With a Pro or Enterprise license you can build and sell unlimited SaaS applications to your clients with no royalty fees. The Starter license covers a single project.
                                 </div>
                             </div>
                         </div>
@@ -110,32 +114,205 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" style="font-family: var(--font-code); font-size: 0.9rem;">
-                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/api/v1/faq/updates-policy"</span>
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/who-is-it-for"</span>
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Are updates included?</strong>
-                                    Yes, all licenses include free lifetime updates for the LaraKit core and its dependencies.
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Who is LaraKit built for?</strong>
+                                    Indie hackers shipping an MVP, agencies spinning up client projects, and startups that want production-grade auth, RBAC and audit logging without rebuilding it every time.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- // technical -->
+                        <p class="faq-group-label mt-4"><span class="token-comment">// technical</span></p>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/laravel-prereq"</span>
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Do I need to know Laravel?</strong>
+                                    LaraKit handles the boilerplate, but you should be comfortable with Laravel fundamentals — routing, Eloquent and Blade — to add your own business logic.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" style="font-family: var(--font-code); font-size: 0.9rem;">
-                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/api/v1/faq/glassmorphism-theme"</span>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/tech-stack"</span>
                                 </button>
                             </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Is the Glassmorphism layout included?</strong>
-                                    Yes! This exact layout you are looking at is included in the Pro and Enterprise plans as a starting point for your marketing website.
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">What's the underlying tech stack?</strong>
+                                    PHP 8.3 + Laravel 13.7, Breeze for auth, Socialite for OAuth, spatie/laravel-permission &amp; activitylog, mcamara/laravel-localization, Yajra DataTables and Intervention Image. The UI runs on Bootstrap 5.3 with Vite, and realtime features use Laravel Reverb.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/architecture"</span>
+                                </button>
+                            </h2>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">How is the codebase structured?</strong>
+                                    Everything lives under a modular architecture in <code>app/Modules/Core</code>. Each feature keeps its own controllers, models, routes, views and language files, so modules stay isolated and easy to reason about.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/database-support"</span>
+                                </button>
+                            </h2>
+                            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Which databases are supported?</strong>
+                                    MySQL 8 is the default, but because everything uses Eloquent and migrations you can switch to PostgreSQL or SQLite with a config change.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- // modules -->
+                        <p class="faq-group-label mt-4"><span class="token-comment">// modules</span></p>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">POST</span>&nbsp;<span class="token-string">"/faq/install-modules"</span>
+                                </button>
+                            </h2>
+                            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">How do I install a module?</strong>
+                                    Run <code>php artisan larakit:install &lt;module&gt;</code>. LaraKit resolves it from the registry, verifies the checksum, then copies files and runs the module's migrations and seeders automatically.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/available-modules"</span>
+                                </button>
+                            </h2>
+                            <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Which modules are available?</strong>
+                                    Seven: Storage Manager, Email Manager, AI Assistant &amp; Knowledge Base, Notification Manager, WA Gateway, Report Builder and Database Backup — all included with Pro and Enterprise.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/ai-providers"</span>
+                                </button>
+                            </h2>
+                            <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Which AI providers does the AI module support?</strong>
+                                    Anthropic, OpenAI, Gemini, Groq and local Ollama models — with customizable assistants, a RAG knowledge base and an embeddable chat widget.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/wa-gateway"</span>
+                                </button>
+                            </h2>
+                            <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Does WhatsApp require a paid API?</strong>
+                                    No. The WA Gateway is a self-hosted WhatsApp engine with real-time SSE, multi-device support and auto session recovery. It plugs into the Notification Manager as a delivery provider.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- // licensing & support -->
+                        <p class="faq-group-label mt-4"><span class="token-comment">// licensing &amp; support</span></p>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/updates-policy"</span>
+                                </button>
+                            </h2>
+                            <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Are updates included?</strong>
+                                    Pro and Enterprise include free lifetime updates for the LaraKit core and modules. Starter includes one year of updates.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/glassmorphism-theme"</span>
+                                </button>
+                            </h2>
+                            <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">Is this glassmorphism layout included?</strong>
+                                    Yes — the exact landing page you're reading ships with the Pro and Enterprise plans as a starting point for your marketing site.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq14" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/support-channels"</span>
+                                </button>
+                            </h2>
+                            <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">How do I get support?</strong>
+                                    Email support is included on every plan, with priority response on Pro (6 months) and Enterprise (1 year). You also get full documentation and access to the community.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq15" style="font-family: var(--font-code); font-size: 0.9rem;">
+                                    <span class="token-keyword">GET</span>&nbsp;<span class="token-string">"/faq/refund-policy"</span>
+                                </button>
+                            </h2>
+                            <div id="faq15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong style="color: #fff; display: block; margin-bottom: 0.5rem;">What is your refund policy?</strong>
+                                    If LaraKit isn't the right fit, email us within 14 days of purchase for a full refund — no questions asked.
                                 </div>
                             </div>
                         </div>
 
                     </div>
+                </div>
+            </div>
+
+            <!-- Still have questions CTA -->
+            <div class="glass-panel p-4 p-md-5 rounded-4 mt-4 text-center" data-aos="fade-up">
+                <h4 class="fw-bold mb-2">Still have questions?</h4>
+                <p class="text-muted mb-4">Can't find what you're looking for? Our team usually replies within a few hours.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="contact.html" class="btn btn-primary-glass"><i class="ri-mail-send-line me-2"></i> Contact Support</a>
+                    <a href="#" class="btn btn-outline-glass"><i class="ri-book-open-line me-2"></i> Read the Docs</a>
                 </div>
             </div>
         </div>

@@ -12,14 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navbar Scrolled State with extra modern scroll transitions
     const navbar = document.querySelector('.navbar');
     if (navbar) {
+        let navTicking = false;
         const updateNavbarScroll = () => {
-            if (window.scrollY > 30) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+            navTicking = false;
         };
-        window.addEventListener('scroll', updateNavbarScroll);
+        // Throttle to one update per frame (passive) so scrolling never
+        // starves the background rAF loop or janks the main thread.
+        window.addEventListener('scroll', () => {
+            if (!navTicking) {
+                navTicking = true;
+                requestAnimationFrame(updateNavbarScroll);
+            }
+        }, { passive: true });
         updateNavbarScroll();
     }
 
@@ -651,4 +656,95 @@ class UserController extends Controller
         
         typeCode();
     }
+
+    // ==========================================================
+    // Ambient coding background — digital "code-rain" (canvas)
+    // Subtle, GPU-light matrix of monospace code glyphs in the
+    // green/cyan theme. Fades trails to transparency so the aurora
+    // glows stay visible behind it. Respects reduced-motion.
+    // ==========================================================
+    (function initCodeRain() {
+        const canvas = document.getElementById('code-rain');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const chars = '01<>{}[]()=>;:+-*/$_.|&%#abcdef!?'.split('');
+
+        let width, height, fontSize, columns, drops, dpr;
+
+        function setup() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            fontSize = width < 600 ? 13 : 16;
+            columns = Math.ceil(width / fontSize);
+            drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -40));
+            ctx.textBaseline = 'top';
+        }
+
+        function paintColumns() {
+            ctx.font = fontSize + "px 'JetBrains Mono', monospace";
+            for (let i = 0; i < columns; i++) {
+                const ch = chars[(Math.random() * chars.length) | 0];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                // bright "head" glyph (cyan-white), trailing body in run-green
+                ctx.fillStyle = Math.random() > 0.93
+                    ? 'rgba(190, 255, 234, 0.92)'
+                    : 'rgba(34, 197, 94, 0.58)';
+                ctx.fillText(ch, x, y);
+                if (y > height && Math.random() > 0.975) {
+                    drops[i] = Math.floor(Math.random() * -20);
+                }
+                drops[i]++;
+            }
+        }
+
+        let rafId = null, last = 0;
+        const STEP = 65; // ms between rows → ~15fps, light on the CPU
+
+        function frame(ts) {
+            rafId = requestAnimationFrame(frame);
+            if (ts - last < STEP) return;
+            last = ts;
+            // erase ~10% of existing alpha each step → fading trails, stays transparent
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.10)';
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'source-over';
+            paintColumns();
+        }
+
+        function start() { if (rafId === null) { last = 0; rafId = requestAnimationFrame(frame); } }
+        function stop() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
+
+        setup();
+
+        if (reduceMotion) {
+            // Static, very faint single frame — no motion for sensitive users
+            ctx.font = fontSize + "px 'JetBrains Mono', monospace";
+            for (let i = 0; i < columns; i += 2) {
+                if (Math.random() > 0.5) continue;
+                ctx.fillStyle = 'rgba(34, 197, 94, 0.16)';
+                ctx.fillText(chars[(Math.random() * chars.length) | 0], i * fontSize, Math.random() * height);
+            }
+            return;
+        }
+
+        start();
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(setup, 200);
+        });
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) { stop(); } else { start(); }
+        });
+    })();
 });
