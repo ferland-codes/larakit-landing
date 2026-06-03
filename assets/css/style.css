@@ -1893,6 +1893,94 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 .steps-card--2:hover .steps-card-watermark { color: rgba(34, 211, 238, 0.055); }
 .steps-card--3:hover .steps-card-watermark { color: rgba(168, 85, 247, 0.055); }
 
+/* ==========================================
+   FEATURES SECTION — FEAT CARDS
+   ========================================== */
+.feat-card {
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.038) 0%,
+    rgba(255, 255, 255, 0.012) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.feat-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 55px -12px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.feat-card-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Icon boxes — reuse same language as steps section */
+.feat-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+.feat-icon--primary {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--bx-primary);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  box-shadow: 0 0 24px -6px rgba(34, 197, 94, 0.3);
+}
+.feat-icon--cyan {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--bx-cyan);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow: 0 0 24px -6px rgba(34, 211, 238, 0.3);
+}
+.feat-icon--purple {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  box-shadow: 0 0 24px -6px rgba(168, 85, 247, 0.3);
+}
+
+.feat-desc { font-size: 0.9rem; line-height: 1.65; flex: 1; }
+
+/* Bottom tag chip */
+.feat-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100rem;
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--bx-primary);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  margin-top: auto;
+  width: fit-content;
+}
+.feat-tag--cyan {
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--bx-cyan);
+  border-color: rgba(34, 211, 238, 0.15);
+}
+.feat-tag--purple {
+  background: rgba(168, 85, 247, 0.08);
+  color: #a855f7;
+  border-color: rgba(168, 85, 247, 0.15);
+}
+
 /* Horizontal connectors for Timeline / Workflow */
 .timeline-connect-line {
   position: relative;
