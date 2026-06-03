@@ -31,26 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNavbarScroll();
     }
 
-    // Mobile Drawer Backdrop — tap outside to close
+    // Mobile dropdown — tap outside the pill to close
     const navDrawer = document.getElementById('navbarNav');
     const navToggler = document.querySelector('.bx-toggler');
     if (navDrawer && navToggler) {
-        const backdrop = document.createElement('div');
-        backdrop.className = 'bx-nav-backdrop';
-        document.body.appendChild(backdrop);
-
-        navDrawer.addEventListener('show.bs.collapse', () => {
-            backdrop.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        });
-        // Fade backdrop at the SAME TIME as the drawer slides back
-        navDrawer.addEventListener('hide.bs.collapse', () => {
-            backdrop.classList.remove('show');
-        });
-        navDrawer.addEventListener('hidden.bs.collapse', () => {
-            document.body.style.overflow = '';
-        });
-        backdrop.addEventListener('click', () => {
+        const navEl = document.querySelector('.glass-nav');
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth >= 992) return;
+            if (!navDrawer.classList.contains('show')) return;
+            if (navEl && navEl.contains(e.target)) return;
             if (typeof bootstrap !== 'undefined') {
                 bootstrap.Collapse.getInstance(navDrawer)?.hide();
             }
