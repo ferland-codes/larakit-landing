@@ -548,16 +548,15 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   }
   
   .glass-nav .nav-link:hover::before,
-  .glass-nav .nav-link:hover::after,
-  .glass-nav .nav-link.active::before,
-  .glass-nav .nav-link.active::after {
+  .glass-nav .nav-link:hover::after {
     display: none;
   }
 
-  /* Reset active padding — bracket is gone so extra indent isn't needed */
+  /* Brackets are position:absolute relative to the link element.
+     On full-width mobile links ] would sit at the far right edge.
+     Shrink to content width so [ ] stay tight around the text. */
   .glass-nav .nav-link.active {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    width: fit-content;
   }
 }
 
