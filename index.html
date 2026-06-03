@@ -632,32 +632,88 @@
     <!-- === CTA SECTION === -->
     <section class="py-5 mb-5">
         <div class="container">
-            <div class="glass-panel p-5 text-center rounded-4 position-relative overflow-hidden" data-aos="zoom-in">
-                <!-- Decorative blur -->
-                <div class="position-absolute top-50 start-50 translate-middle"
-                    style="width: 300px; height: 300px; background: var(--bx-primary); filter: blur(100px); opacity: 0.15; z-index: -1;">
-                </div>
+            <div class="cta-block position-relative overflow-hidden rounded-4" data-aos="fade-up">
 
-                <h2 class="fw-bold mb-3">Ready to launch your SaaS?</h2>
-                <p class="lead mb-4 text-muted">Join hundreds of developers who build faster with LaraKit.</p>
-                <div class="d-flex flex-column align-items-center gap-3">
-                    <div class="d-flex gap-3 justify-content-center flex-wrap">
-                        <a href="pricing.html" class="btn btn-primary-glass btn-lg px-5">Get LaraKit Today</a>
-                        <a href="#" class="btn btn-outline-glass btn-lg px-4"><i class="ri-book-open-line me-2"></i>
-                            Documentation</a>
-                    </div>
-                    <div class="mt-3 w-100" style="max-width: 480px;">
-                        <div class="terminal-box cursor-pointer text-start">
-                            <div>
-                                <span class="terminal-prompt">$</span>
-                                <span class="terminal-cmd" id="quickstart-cmd">composer create-project larakit/larakit
-                                    ./</span>
+                <!-- Background glows -->
+                <div class="cta-glow cta-glow--green"></div>
+                <div class="cta-glow cta-glow--cyan"></div>
+
+                <!-- Top accent bar -->
+                <div class="cta-top-bar"></div>
+
+                <div class="row align-items-center g-0">
+
+                    <!-- Left: Copy -->
+                    <div class="col-lg-6 cta-left p-4 p-lg-5">
+                        <span class="badge-glass-primary mb-4 d-inline-flex">
+                            <i class="ri-rocket-fill me-2"></i> v1.0 · Ready to ship
+                        </span>
+                        <h2 class="display-4 fw-bold mb-3">
+                            Ready to launch<br>
+                            <span class="text-gradient">your SaaS?</span>
+                        </h2>
+                        <p class="lead text-muted mb-5">
+                            Stop reinventing the wheel. Dapatkan foundation Laravel 13 yang production-ready — launch dalam hitungan hari, bukan bulan.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap mb-5">
+                            <a href="pricing.html" class="btn btn-primary-glass btn-lg px-5 btn-pulse-glow">
+                                <i class="ri-rocket-fill me-2"></i> Get LaraKit Today
+                            </a>
+                            <a href="#" class="btn btn-outline-glass btn-lg px-4">
+                                <i class="ri-book-open-line me-2"></i> Docs
+                            </a>
+                        </div>
+                        <div class="d-flex gap-4 flex-wrap">
+                            <div class="cta-stat">
+                                <span class="cta-stat-num">$0</span>
+                                <span class="cta-stat-label">to start</span>
                             </div>
-                            <button class="btn-copy-code" data-clipboard-target="#quickstart-cmd" title="Copy command">
-                                <i class="ri-file-copy-line"></i> Copy
-                            </button>
+                            <div class="cta-stat">
+                                <span class="cta-stat-num">7+</span>
+                                <span class="cta-stat-label">modules</span>
+                            </div>
+                            <div class="cta-stat">
+                                <span class="cta-stat-num">1×</span>
+                                <span class="cta-stat-label">payment · forever</span>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Right: Terminal -->
+                    <div class="col-lg-6 cta-right p-4 p-lg-5">
+                        <div class="code-editor-window">
+                            <div class="code-editor-header">
+                                <div class="mac-dots">
+                                    <div class="mac-dot close"></div>
+                                    <div class="mac-dot minimize"></div>
+                                    <div class="mac-dot expand"></div>
+                                </div>
+                                <div class="code-editor-title" style="font-size: 0.75rem;">terminal — larakit</div>
+                                <div style="width: 30px;"></div>
+                            </div>
+                            <div class="code-editor-body p-4" style="font-size: 0.85rem; line-height: 1.9;">
+                                <div>
+                                    <span class="token-comment">~$</span>
+                                    <span class="text-white ms-2">composer create-project larakit/larakit ./</span>
+                                </div>
+                                <div style="color: var(--bx-terminal);">&#10003; Installing LaraKit v1.0.0...</div>
+                                <div style="color: var(--bx-terminal);">&#10003; Configuring modules...</div>
+                                <div style="color: var(--bx-terminal);">&#10003; Setting up dashboard...</div>
+                                <div class="mb-3" style="color: var(--bx-primary); font-weight: 600;">&#10003; Ready. Happy shipping!</div>
+                                <div>
+                                    <span class="token-comment">~$</span>
+                                    <span class="cursor-blink ms-1"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="cta-pill"><i class="ri-check-line me-1 text-success"></i>Laravel 13</span>
+                            <span class="cta-pill"><i class="ri-check-line me-1 text-success"></i>PHP 8.3</span>
+                            <span class="cta-pill"><i class="ri-check-line me-1 text-success"></i>Full source</span>
+                            <span class="cta-pill"><i class="ri-check-line me-1 text-success"></i>Pay once</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
