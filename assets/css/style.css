@@ -694,7 +694,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   }
 
   .glass-nav .navbar-collapse .nav-link.active {
-    background: rgba(34, 197, 94, 0.08) !important;
+    background: transparent !important;
     color: #fff !important;
     font-weight: 600 !important;
     padding: 0.75rem 1.5rem !important;
@@ -707,7 +707,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     text-shadow: 0 0 8px rgba(34, 197, 94, 0.5) !important;
   }
   .glass-nav .navbar-collapse .nav-link.active:hover {
-    background: rgba(34, 197, 94, 0.11) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
     padding: 0.75rem 1.5rem !important;
     color: #fff !important;
   }
