@@ -1981,6 +1981,156 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   border-color: rgba(168, 85, 247, 0.15);
 }
 
+/* ==========================================
+   MODULE MARKETPLACE CARDS
+   ========================================== */
+
+/* Color tokens per module — all hover/glow logic reads --mc-color/--mc-rgb */
+.mod-card--green  { --mc-color: #22C55E; --mc-rgb: 34, 197, 94; }
+.mod-card--sky    { --mc-color: #38BDF8; --mc-rgb: 56, 189, 248; }
+.mod-card--purple { --mc-color: #a855f7; --mc-rgb: 168, 85, 247; }
+.mod-card--orange { --mc-color: #f97316; --mc-rgb: 249, 115, 22; }
+.mod-card--teal   { --mc-color: #10b981; --mc-rgb: 16, 185, 129; }
+.mod-card--cyan   { --mc-color: #22D3EE; --mc-rgb: 34, 211, 238; }
+.mod-card--amber  { --mc-color: #f59e0b; --mc-rgb: 245, 158, 11; }
+
+.mod-card {
+  position: relative;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.038) 0%,
+    rgba(255, 255, 255, 0.012) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.15rem;
+  padding: 1.35rem 1.2rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  cursor: default;
+}
+
+/* Radial glow overlay on hover */
+.mod-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 0% 0%, rgba(var(--mc-rgb), 0.07) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.mod-card:hover::after { opacity: 1; }
+
+.mod-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--mc-rgb), 0.25);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5),
+              0 0 40px -18px rgba(var(--mc-rgb), 0.3);
+}
+
+/* Icon box */
+.mod-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: rgba(var(--mc-rgb), 0.1);
+  color: var(--mc-color);
+  border: 1px solid rgba(var(--mc-rgb), 0.18);
+  transition: box-shadow 0.3s ease;
+}
+.mod-card:hover .mod-card-icon {
+  box-shadow: 0 0 20px -4px rgba(var(--mc-rgb), 0.5);
+}
+
+.mod-card-name {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+.mod-card-sub {
+  font-size: 0.75rem;
+  color: var(--bx-text-muted);
+  font-family: var(--font-code);
+}
+
+/* Tiny "artisan:install" pill at bottom */
+.mod-card-pill {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 100rem;
+  background: rgba(var(--mc-rgb), 0.08);
+  color: var(--mc-color);
+  border: 1px solid rgba(var(--mc-rgb), 0.15);
+  width: fit-content;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.mod-card:hover .mod-card-pill { opacity: 1; }
+
+/* "View all" special card */
+.mod-card--more {
+  --mc-color: #22C55E;
+  --mc-rgb: 34, 197, 94;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.06) 0%,
+    rgba(34, 211, 238, 0.04) 100%
+  );
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+.mod-card--more:hover {
+  border-color: rgba(34, 197, 94, 0.35);
+  border-style: solid;
+}
+
+.mod-card-more-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  height: 100%;
+}
+.mod-card-more-icon {
+  font-size: 1.4rem;
+  color: var(--bx-primary);
+  opacity: 0.6;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.mod-card--more:hover .mod-card-more-icon {
+  opacity: 1;
+  transform: rotate(15deg);
+}
+.mod-card-more-arrow {
+  margin-top: auto;
+  font-size: 1.1rem;
+  color: var(--bx-primary);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.mod-card--more:hover .mod-card-more-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* Horizontal connectors for Timeline / Workflow */
 .timeline-connect-line {
   position: relative;
