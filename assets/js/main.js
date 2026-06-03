@@ -31,6 +31,32 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNavbarScroll();
     }
 
+    // Mobile Drawer Backdrop — tap outside to close
+    const navDrawer = document.getElementById('navbarNav');
+    const navToggler = document.querySelector('.bx-toggler');
+    if (navDrawer && navToggler) {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'bx-nav-backdrop';
+        document.body.appendChild(backdrop);
+
+        navDrawer.addEventListener('show.bs.collapse', () => {
+            backdrop.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        // Fade backdrop at the SAME TIME as the drawer slides back
+        navDrawer.addEventListener('hide.bs.collapse', () => {
+            backdrop.classList.remove('show');
+        });
+        navDrawer.addEventListener('hidden.bs.collapse', () => {
+            document.body.style.overflow = '';
+        });
+        backdrop.addEventListener('click', () => {
+            if (typeof bootstrap !== 'undefined') {
+                bootstrap.Collapse.getInstance(navDrawer)?.hide();
+            }
+        });
+    }
+
     // ==========================================================
     // Dynamic Command Palette System (WOW Glassmorphism Effect)
     // ==========================================================
