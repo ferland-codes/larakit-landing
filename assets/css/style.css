@@ -671,11 +671,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     font-size: 0.9rem !important;
   }
   .glass-nav .navbar-collapse .nav-link::after {
-    top: 50% !important;
-    right: 0.5rem !important;
-    transform: translateY(-50%) !important;
-    transition: opacity 0.15s ease !important;
-    font-size: 0.9rem !important;
+    display: none !important;
   }
 
   .glass-nav .navbar-collapse .nav-link:hover {
