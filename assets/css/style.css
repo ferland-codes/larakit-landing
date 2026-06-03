@@ -2003,10 +2003,11 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   );
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
-  padding: 1rem 1rem 0.85rem;
+  padding: 0.9rem 1rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.3s ease,
@@ -2066,23 +2067,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   font-family: var(--font-code);
 }
 
-/* Tiny "artisan:install" pill at bottom */
-.mod-card-pill {
-  margin-top: 0.25rem;
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-code);
-  font-size: 0.6rem;
-  padding: 0.14rem 0.45rem;
-  border-radius: 100rem;
-  background: rgba(var(--mc-rgb), 0.08);
-  color: var(--mc-color);
-  border: 1px solid rgba(var(--mc-rgb), 0.15);
-  width: fit-content;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-.mod-card:hover .mod-card-pill { opacity: 1; }
 
 /* "View all" special card */
 .mod-card--more {
