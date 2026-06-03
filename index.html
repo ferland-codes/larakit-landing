@@ -479,86 +479,91 @@
     <!-- === PRICING SECTION === -->
     <section class="py-5 my-5">
         <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold display-5">Simple, Transparent Pricing</h2>
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="badge-glass-primary mb-3"><i class="ri-price-tag-3-line me-1"></i> Pricing</span>
+                <h2 class="fw-bold display-5 mb-3">Simple, Transparent Pricing</h2>
                 <p class="lead text-muted">Pay once, own the code forever.</p>
             </div>
+            <div class="text-center mb-4" data-aos="fade-up">
+                <span class="badge-glass-accent px-4 py-2" style="font-family: var(--font-code); font-size: 0.8rem;">
+                    <i class="ri-time-line me-1"></i> Early Bird — harga naik setelah 100 lisensi terjual
+                </span>
+            </div>
             <div class="row g-4 justify-content-center">
-                <!-- Basic Plan -->
+
+                <!-- Core — Free -->
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="pricing-card h-100 d-flex flex-column">
                         <div class="mb-4">
-                            <h4 class="fw-bold mb-2">Starter</h4>
-                            <p class="text-muted">Perfect for indie hackers and solo developers.</p>
-                            <h2 class="display-5 fw-bold mb-0">$49</h2>
-                            <small class="text-muted">one-time payment</small>
+                            <span class="badge mb-2" style="background: rgba(148,163,184,0.1); color: var(--bx-text-muted); border: 1px solid rgba(148,163,184,0.2); font-family: var(--font-code); font-size: 0.7rem;">FREE FOREVER</span>
+                            <h4 class="fw-bold mb-2">Core</h4>
+                            <p class="text-muted small">Coba dulu, tidak perlu kartu kredit.</p>
+                            <h2 class="display-5 fw-bold mb-0">$0</h2>
+                            <small class="text-muted">gratis selamanya</small>
                         </div>
-                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Laravel 13
-                                Core</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Butunix
-                                Dashboard (Basic)</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Standard Auth
-                                System</li>
-                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill"></i> Glassmorphism
-                                Landing Page</li>
-                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill"></i> Premium Support
-                            </li>
+                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3" style="font-size: 0.9rem;">
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Laravel 13 Modular Core</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Butunix Dashboard (Basic)</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Auth + Google OAuth</li>
+                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill mt-1"></i> Installable Modules</li>
+                            <li class="d-flex gap-2 text-muted"><i class="ri-close-circle-fill mt-1"></i> Commercial license</li>
                         </ul>
-                        <a href="pricing.html" class="btn btn-outline-glass w-100 mt-auto">Buy Starter</a>
+                        <a href="pricing.html" class="btn btn-outline-glass w-100 mt-auto">Download Free</a>
                     </div>
                 </div>
 
-                <!-- Pro Plan (Popular) -->
+                <!-- Pro — Most Popular -->
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-card pricing-popular h-100 d-flex flex-column">
-                        <span class="popular-badge">Most Popular</span>
-                        <div class="mb-4">
-                            <h4 class="fw-bold mb-2">Pro</h4>
-                            <p class="text-muted">For serious startups and small teams.</p>
-                            <h2 class="display-5 fw-bold mb-0 text-gradient">$99</h2>
-                            <small class="text-muted">one-time payment</small>
+                    <div class="rotating-glow-card h-100">
+                        <div class="rotating-glow-card-inner p-4 p-lg-5 h-100 d-flex flex-column"
+                            style="border-radius: 2rem; background: rgba(8, 10, 22, 0.95);">
+                            <span class="popular-badge" style="top: 5px;">Most Popular</span>
+                            <div class="mb-4 mt-3">
+                                <span class="badge mb-2" style="background: rgba(249,115,22,0.12); color: #f97316; border: 1px solid rgba(249,115,22,0.25); font-family: var(--font-code); font-size: 0.7rem;"><i class="ri-fire-line me-1"></i>EARLY BIRD</span>
+                                <h4 class="fw-bold mb-2">Pro</h4>
+                                <p class="text-muted small">Full kit untuk freelancer &amp; solo dev.</p>
+                                <div class="d-flex align-items-baseline gap-2 mb-1">
+                                    <h2 class="display-5 fw-bold mb-0 text-gradient">$29</h2>
+                                    <s class="text-muted">$49</s>
+                                </div>
+                                <small class="text-muted">one-time · unlimited personal projects</small>
+                            </div>
+                            <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3" style="font-size: 0.9rem;">
+                                <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Semua fitur Core</li>
+                                <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Glassmorphism Landing Page</li>
+                                <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Semua 7 Installable Modules</li>
+                                <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Lifetime updates</li>
+                                <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> 6 bulan email support</li>
+                            </ul>
+                            <a href="pricing.html" class="btn btn-primary-glass w-100 mt-auto">Get Pro — $29</a>
                         </div>
-                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Everything in
-                                Starter</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Butunix
-                                Dashboard (Full)</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Glassmorphism
-                                Landing Page</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Advanced Roles
-                                & Permissions</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> 6 Months
-                                Premium Support</li>
-                        </ul>
-                        <a href="pricing.html" class="btn btn-primary-glass w-100 mt-auto">Buy Pro</a>
                     </div>
                 </div>
 
-                <!-- Enterprise Plan -->
+                <!-- Agency -->
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="pricing-card h-100 d-flex flex-column">
                         <div class="mb-4">
-                            <h4 class="fw-bold mb-2">Enterprise</h4>
-                            <p class="text-muted">For agencies and large scale businesses.</p>
-                            <h2 class="display-5 fw-bold mb-0">$249</h2>
-                            <small class="text-muted">one-time payment</small>
+                            <span class="badge mb-2" style="background: rgba(249,115,22,0.12); color: #f97316; border: 1px solid rgba(249,115,22,0.25); font-family: var(--font-code); font-size: 0.7rem;"><i class="ri-fire-line me-1"></i>EARLY BIRD</span>
+                            <h4 class="fw-bold mb-2">Agency</h4>
+                            <p class="text-muted small">Untuk freelancer tim &amp; digital agency.</p>
+                            <div class="d-flex align-items-baseline gap-2 mb-1">
+                                <h2 class="display-5 fw-bold mb-0">$79</h2>
+                                <s class="text-muted">$129</s>
+                            </div>
+                            <small class="text-muted">one-time · unlimited client projects</small>
                         </div>
-                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3">
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Everything in
-                                Pro</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Multi-tenancy
-                                Support</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Figma Design
-                                Files</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> Lifetime
-                                Updates</li>
-                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success"></i> 1 Year
-                                Priority Support</li>
+                        <ul class="list-unstyled flex-grow-1 mb-4 d-flex flex-column gap-3" style="font-size: 0.9rem;">
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Semua fitur Pro</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Unlimited client projects</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> Hingga 5 developer</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> White-label allowed</li>
+                            <li class="d-flex gap-2"><i class="ri-checkbox-circle-fill text-success mt-1"></i> 1 tahun priority support</li>
                         </ul>
-                        <a href="contact.html" class="btn btn-outline-glass w-100 mt-auto">Contact Sales</a>
+                        <a href="pricing.html" class="btn btn-outline-glass w-100 mt-auto">Get Agency — $79</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
