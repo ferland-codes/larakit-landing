@@ -2054,17 +2054,29 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: 0 0 16px -4px rgba(var(--mc-rgb), 0.5);
 }
 
+.mod-card > div:not(.mod-card-icon) {
+  min-width: 0;
+  flex: 1;
+}
+
 .mod-card-name {
   margin: 0;
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mod-card-sub {
   font-size: 0.7rem;
   color: var(--bx-text-muted);
   font-family: var(--font-code);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 
