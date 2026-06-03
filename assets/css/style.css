@@ -624,8 +624,9 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     overflow: hidden;
   }
 
-  /* Smooth height transition while Bootstrap animates */
+  /* Hide during Bootstrap's height animation so bxDropIn has no flicker */
   .glass-nav .navbar-collapse.collapsing {
+    opacity: 0;
     transition: height 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
