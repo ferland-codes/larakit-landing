@@ -85,47 +85,35 @@
                                     <div class="mac-dot expand"></div>
                                 </div>
                                 <div class="code-editor-title" style="font-size: 0.725rem;">
-                                    app/Modules/Ai/AiController.php</div>
+                                    config/larakit.php</div>
                                 <div style="width: 30px;"></div>
                             </div>
                             <div class="code-editor-tabs">
                                 <div class="code-editor-tab active">
-                                    <i class="ri-code-s-slash-line text-primary"></i> AiController.php
+                                    <i class="ri-settings-5-line text-primary"></i> larakit.php
                                 </div>
                                 <div class="code-editor-tab">
-                                    <i class="ri-robot-2-line text-muted"></i> ai.config.php
+                                    <i class="ri-terminal-box-line text-muted"></i> .env
                                 </div>
                             </div>
                             <div class="code-editor-body" style="font-size: 0.76rem;">
-                                <pre class="m-0"><code class="language-php" id="hero-code-editor"><span class="token-comment">// [CORE] AI Assistant Module — v2.0</span>
-<span class="token-string">#[Module('ai'), Authenticated, Cached(ttl: 900)]</span>
-<span class="token-keyword">final class</span> <span class="token-class">AiController</span> <span class="token-keyword">extends</span> <span class="token-class">Controller</span>
-{
-    <span class="token-keyword">use</span> <span class="token-class">HasActivityLog</span>, <span class="token-class">HasRateLimit</span>;
+                                <pre class="m-0"><code class="language-php" id="hero-code-editor"><span class="token-comment">// LaraKit — ship faster, scale smarter</span>
 
-    <span class="token-keyword">public function</span> <span class="token-function">__construct</span>(
-        <span class="token-keyword">private readonly</span> <span class="token-class">AiService</span>  <span class="token-variable">$engine</span>,
-        <span class="token-keyword">private readonly</span> <span class="token-class">VectorDb</span>   <span class="token-variable">$vectors</span>,
-    ) {}
+<span class="token-keyword">return</span> [
 
-    <span class="token-string">#[Post('/ai/query'), RateLimit(60)]</span>
-    <span class="token-keyword">public function</span> <span class="token-function">query</span>(<span class="token-class">AiRequest</span> <span class="token-variable">$req</span>): <span class="token-class">Response</span>
-    {
-        <span class="token-variable">$reply</span> = <span class="token-variable">$this</span>-><span class="token-function">engine</span>
-            -><span class="token-function">withContext</span>(<span class="token-variable">$req</span>-><span class="token-function">context</span>())
-            -><span class="token-function">usingModel</span>(<span class="token-string">'gpt-4o-mini'</span>)
-            -><span class="token-function">ragSearch</span>(<span class="token-variable">$this</span>-><span class="token-variable">$vectors</span>)
-            -><span class="token-function">stream</span>(<span class="token-variable">$req</span>-><span class="token-variable">$prompt</span>);
+    <span class="token-string">'stack'</span>   => <span class="token-string">'Laravel 13 + PHP 8.3'</span>,
 
-        <span class="token-variable">$this</span>-><span class="token-function">logActivity</span>(<span class="token-string">'ai.query'</span>, <span class="token-variable">$reply</span>);
+    <span class="token-string">'auth'</span>    => [<span class="token-string">'oauth'</span>, <span class="token-string">'roles'</span>, <span class="token-string">'2FA'</span>],
 
-        <span class="token-keyword">return</span> <span class="token-function">response</span>()-><span class="token-function">success</span>([
-            <span class="token-string">'answer'</span> => <span class="token-variable">$reply</span>-><span class="token-variable">$content</span>,
-            <span class="token-string">'tokens'</span> => <span class="token-variable">$reply</span>-><span class="token-function">usage</span>()-><span class="token-variable">$total</span>,
-            <span class="token-string">'model'</span>  => <span class="token-variable">$reply</span>-><span class="token-variable">$model</span>,
-        ]);
-    }
-}<span class="cursor-blink"></span></code></pre>
+    <span class="token-string">'ui'</span>      => <span class="token-string">'glassmorphism + dark_mode'</span>,
+
+    <span class="token-string">'modules'</span> => [<span class="token-string">'ai'</span>, <span class="token-string">'whatsapp'</span>, <span class="token-string">'email'</span>],
+
+    <span class="token-string">'license'</span> => <span class="token-string">'pay_once · own_forever'</span>,
+
+    <span class="token-string">'ready'</span>   => <span class="token-boolean">true</span>, <span class="token-comment">// days, not months</span>
+
+];<span class="cursor-blink"></span></code></pre>
                             </div>
                         </div>
 

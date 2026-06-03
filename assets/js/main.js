@@ -545,39 +545,28 @@ class Controller extends Controller
     // === Hero Code Typing Animation ===
     const heroCodeElement = document.getElementById('hero-code-editor');
     if (heroCodeElement) {
-        const prefix = `// [CORE] AI Assistant Module — v2.0
-#[Module('ai'), Authenticated, Cached(ttl: 900)]
-final class AiController extends Controller
-{
-    use HasActivityLog, HasRateLimit;
+        const prefix = `// LaraKit — ship faster, scale smarter
 
-    public function __construct(
-        private readonly AiService  $engine,
-        private readonly VectorDb   $vectors,
-    ) {}
-
-    #[Post('/ai/query'), RateLimit(60)]
-    public function query(AiRequest $req): Response
-    {`;
+return [`;
 
         const suffix = `
-    }
-}`;
+
+];`;
 
         const textToType = `
-        $reply = $this->engine
-            ->withContext($req->context())
-            ->usingModel('gpt-4o-mini')
-            ->ragSearch($this->vectors)
-            ->stream($req->prompt);
 
-        $this->logActivity('ai.query', $reply);
+    'stack'   => 'Laravel 13 + PHP 8.3',
 
-        return response()->success([
-            'answer' => $reply->content,
-            'tokens' => $reply->usage()->total,
-            'model'  => $reply->model,
-        ]);`;
+    'auth'    => ['oauth', 'roles', '2FA'],
+
+    'ui'      => 'glassmorphism + dark_mode',
+
+    'modules' => ['ai', 'whatsapp', 'email'],
+
+    'license' => 'pay_once · own_forever',
+
+    'ready'   => true, // days, not months
+`;`;
 
         let currentIndex = 0;
         let isDeleting = false;
@@ -588,10 +577,8 @@ final class AiController extends Controller
             const rules = [
                 { re: /(\/\/.*)/g, cls: 'token-comment' },
                 { re: /(["'])(?:(?=(\\?))\2.)*?\1/g, cls: 'token-string' },
-                { re: /\b(final|use|class|extends|public|function|return|private|readonly)\b/g, cls: 'token-keyword' },
-                { re: /\b(AiController|Controller|HasActivityLog|HasRateLimit|AiService|VectorDb|AiRequest|Response)\b/g, cls: 'token-class' },
+                { re: /\b(return|true|false|null)\b/g, cls: 'token-keyword' },
                 { re: /(\$[a-zA-Z0-9_]+)/g, cls: 'token-variable' },
-                { re: /\b(query|withContext|usingModel|ragSearch|stream|context|logActivity|response|success|usage)\b/g, cls: 'token-function' }
             ];
 
             let placeholders = [];
