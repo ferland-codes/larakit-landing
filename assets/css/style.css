@@ -289,33 +289,61 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     0 0 0 1px rgba(255, 255, 255, 0.02) inset;
 }
 
-/* 4. Elegant Navbar */
+/* 4. Elegant Navbar — ultra-transparent glassmorphism */
 .glass-nav {
-  background: rgba(4, 5, 14, 0.35);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 
-    0 15px 35px -10px rgba(0, 0, 0, 0.6),
-    0 1px 0px 0 rgba(255, 255, 255, 0.05) inset,
-    0 0 0 1px rgba(255, 255, 255, 0.01) inset;
+  /* Near-invisible tinted glass — aurora behind shows through clearly */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(15, 23, 42, 0.08) 50%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+  /* saturate() makes aurora colours pop through the frosted layer */
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  /* Light-source: top edge is brighter (light hits the rim) */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.22);
+  border-radius: 100rem;
+  box-shadow:
+    /* outer ambient shadow */
+    0 8px 32px -8px rgba(0, 0, 0, 0.35),
+    /* green ambient glow from brand */
+    0 0 60px -20px rgba(34, 197, 94, 0.08),
+    /* inset top-edge light catch */
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    /* inset bottom depth line */
+    0 -1px 0 rgba(0, 0, 0, 0.18) inset;
   margin-top: 1.5rem;
   width: calc(100% - 2rem);
   max-width: 1200px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 100rem;
   padding: 0.6rem 1.2rem;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              margin-top 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-nav.scrolled {
-  background: rgba(4, 5, 14, 0.75);
-  border-color: rgba(34, 197, 94, 0.25);
-  box-shadow: 
-    0 20px 45px -15px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(34, 197, 94, 0.15),
-    0 1px 0px 0 rgba(255, 255, 255, 0.1) inset;
+  /* After scroll: a touch more body so links stay legible over any content */
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.52) 0%,
+    rgba(4, 5, 14, 0.42) 50%,
+    rgba(15, 23, 42, 0.48) 100%
+  );
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border-color: rgba(34, 197, 94, 0.18);
+  border-top-color: rgba(34, 197, 94, 0.35);
+  box-shadow:
+    0 16px 48px -12px rgba(0, 0, 0, 0.55),
+    0 0 40px -12px rgba(34, 197, 94, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.22) inset;
   margin-top: 0.85rem;
   padding: 0.45rem 1.2rem;
 }
@@ -1858,10 +1886,12 @@ select:focus-visible,
     background: rgba(15, 23, 42, 0.85) !important;
   }
   .glass-nav {
-    background: rgba(4, 5, 14, 0.92) !important;
+    background: rgba(4, 5, 14, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
   }
   .glass-nav.scrolled {
-    background: rgba(4, 5, 14, 0.96) !important;
+    background: rgba(4, 5, 14, 0.94) !important;
+    border-color: rgba(34, 197, 94, 0.18) !important;
   }
 
   /* 4. Scope transitions to GPU-friendly props only — avoid "transition:all"
