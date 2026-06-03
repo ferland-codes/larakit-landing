@@ -597,7 +597,19 @@ class UserController extends Controller
             return html;
         }
 
+        // Pause typing during scroll so DOM mutations don't compete with scroll
+        let typingScrollPaused = false;
+        let typingScrollTimer;
+        if (window.innerWidth < 768) {
+            window.addEventListener('scroll', () => {
+                typingScrollPaused = true;
+                clearTimeout(typingScrollTimer);
+                typingScrollTimer = setTimeout(() => { typingScrollPaused = false; }, 150);
+            }, { passive: true });
+        }
+
         function typeCode() {
+            if (typingScrollPaused) { setTimeout(typeCode, 150); return; }
             if (!isDeleting) {
                 // Typing phase
                 if (currentIndex <= textToType.length) {
@@ -678,8 +690,10 @@ class UserController extends Controller
             host.innerHTML = '';
             const vw = window.innerWidth;
             const vh = window.innerHeight;
-            const spacing = vw < 600 ? 30 : 42;            // px between columns
-            const cols = Math.max(1, Math.floor(vw / spacing));
+            const spacing = vw < 600 ? 36 : 42;            // px between columns
+            // Cap columns on mobile — too many compositor layers hurt GPU
+            const maxCols = vw < 600 ? 7 : 9999;
+            const cols = Math.min(maxCols, Math.max(1, Math.floor(vw / spacing)));
             const lineH = (vw < 600 ? 13 : 15) * 1.5;      // keep in sync with CSS line-height
             const linesPerCopy = Math.ceil(vh / lineH) + 6;
 

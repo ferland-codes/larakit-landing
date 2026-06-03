@@ -1824,6 +1824,61 @@ select:focus-visible,
   .accordion-button { font-size: 0.72rem !important; padding: 0.75rem 0.85rem; }
 }
 
+/* ── MOBILE PERFORMANCE (≤767px) ───────────────────────────────────────────
+   Two root causes of mobile scroll jank and frozen animations:
+
+   1. body::before / body::after aurora  — pseudo-elements cannot carry
+      will-change, so iOS/Android pause the keyframes during scroll. The
+      heavy filter:blur(140px) + mix-blend-mode:screen also force a main-
+      thread composite pass on every paint. Fix: static glow, no animation.
+
+   2. backdrop-filter:blur() on 15+ elements — mobile GPUs cannot composite
+      that many blurred layers without dropping frames. Fix: disable entirely
+      and compensate with a solid opaque tint.
+   ──────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  /* 1. Static aurora — removes the jank source without killing the visual */
+  body::before,
+  body::after {
+    animation: none !important;
+    filter: blur(50px) !important;
+    mix-blend-mode: normal !important;
+    transform: none !important;
+    border-radius: 50% !important;
+  }
+
+  /* 2. Kill backdrop-filter across the board — solid backgrounds instead */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* 3. Compensate with opaque tints so panels don't look transparent */
+  .glass-panel {
+    background: rgba(15, 23, 42, 0.85) !important;
+  }
+  .glass-nav {
+    background: rgba(4, 5, 14, 0.92) !important;
+  }
+  .glass-nav.scrolled {
+    background: rgba(4, 5, 14, 0.96) !important;
+  }
+
+  /* 4. Scope transitions to GPU-friendly props only — avoid "transition:all"
+        triggering layout or paint passes on scroll-driven class changes */
+  .glass-panel,
+  .glass-card-hover,
+  .glass-nav {
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* 5. Reduce code-rain canvas opacity — fewer bright layers on screen */
+  #code-rain {
+    opacity: 0.3;
+  }
+}
+
 /* Respect users who prefer reduced motion (skill: reduced-motion) */
 @media (prefers-reduced-motion: reduce) {
   *,
