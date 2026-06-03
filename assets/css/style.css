@@ -320,6 +320,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.6rem 1.2rem;
+  /* sit above backdrop (1044) and drawer (1045) so the pill stays clickable */
+  z-index: 1050;
   transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -769,6 +771,12 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 @media (min-width: 992px) {
   .navbar-collapse.collapsing {
     transition: height 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* Burger must be hidden on desktop — display:flex !important in the base rule
+     overrides Bootstrap's navbar-expand-lg suppression */
+  .bx-toggler {
+    display: none !important;
   }
 }
 
