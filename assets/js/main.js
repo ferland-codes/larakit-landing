@@ -545,14 +545,19 @@ class Controller extends Controller
     // === Hero Code Typing Animation ===
     const heroCodeElement = document.getElementById('hero-code-editor');
     if (heroCodeElement) {
-        const prefix = `// Laravel 13 Modular Controller
-namespace App\\Modules\\Core;
-
-class UserController extends Controller
+        const prefix = `// [CORE] AI Assistant Module — v2.0
+#[Module('ai'), Authenticated, Cached(ttl: 900)]
+final class AiController extends Controller
 {
-    use HasActivityLog, HasEncryptedId;
+    use HasActivityLog, HasRateLimit;
 
-    public function store(Request $request)
+    public function __construct(
+        private readonly AiService  $engine,
+        private readonly VectorDb   $vectors,
+    ) {}
+
+    #[Post('/ai/query'), RateLimit(60)]
+    public function query(AiRequest $req): Response
     {`;
 
         const suffix = `
@@ -560,13 +565,19 @@ class UserController extends Controller
 }`;
 
         const textToType = `
-        return DB::transaction(function() use ($request) {
-            $user = User::create($request->validated());
-            
-            $this->logActivity('user.create', $user);
-            return redirect()->back()
-                ->with('success', __('user.created'));
-        });`;
+        $reply = $this->engine
+            ->withContext($req->context())
+            ->usingModel('gpt-4o-mini')
+            ->ragSearch($this->vectors)
+            ->stream($req->prompt);
+
+        $this->logActivity('ai.query', $reply);
+
+        return response()->success([
+            'answer' => $reply->content,
+            'tokens' => $reply->usage()->total,
+            'model'  => $reply->model,
+        ]);`;
 
         let currentIndex = 0;
         let isDeleting = false;
@@ -577,10 +588,10 @@ class UserController extends Controller
             const rules = [
                 { re: /(\/\/.*)/g, cls: 'token-comment' },
                 { re: /(["'])(?:(?=(\\?))\2.)*?\1/g, cls: 'token-string' },
-                { re: /\b(namespace|use|class|extends|public|function|return)\b/g, cls: 'token-keyword' },
-                { re: /\b(UserController|Controller|HasActivityLog|HasEncryptedId|Request|DB|User)\b/g, cls: 'token-class' },
+                { re: /\b(final|use|class|extends|public|function|return|private|readonly)\b/g, cls: 'token-keyword' },
+                { re: /\b(AiController|Controller|HasActivityLog|HasRateLimit|AiService|VectorDb|AiRequest|Response)\b/g, cls: 'token-class' },
                 { re: /(\$[a-zA-Z0-9_]+)/g, cls: 'token-variable' },
-                { re: /\b(store|transaction|create|validated|logActivity|redirect|back|with|__)\b/g, cls: 'token-function' }
+                { re: /\b(query|withContext|usingModel|ragSearch|stream|context|logActivity|response|success|usage)\b/g, cls: 'token-function' }
             ];
 
             let placeholders = [];
