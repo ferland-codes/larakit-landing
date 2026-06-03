@@ -521,42 +521,121 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   padding-right: 1.55rem !important;
 }
 
+/* ── MOBILE / TABLET NAVBAR (≤991px) ──────────────────────────────────────
+   Full redesign: glass dropdown panel, styled toggler, active pill with
+   [ ] brackets, separator between nav items and CTAs, full-width CTA row.
+   ──────────────────────────────────────────────────────────────────────── */
 @media (max-width: 991px) {
+
+  /* 1. Parent: switch from pill to rounded-rectangle */
   .glass-nav {
-    border-radius: 1.5rem;
-    padding: 0.75rem 1.25rem;
-    width: calc(100% - 1.5rem);
-  }
-
-  .glass-nav .navbar-collapse {
-    background: rgba(5, 6, 16, 0.96);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
     border-radius: 1.25rem;
-    padding: 1.5rem;
+    padding: 0.7rem 1.1rem;
+    width: calc(100% - 1.25rem);
     margin-top: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  .glass-nav.scrolled { margin-top: 0.6rem; }
+
+  /* 2. Toggler — glass button with refined border */
+  .glass-nav .navbar-toggler {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0.75rem !important;
+    padding: 0.4rem 0.55rem;
+    color: var(--bx-text-muted);
+    transition: background 0.2s ease, border-color 0.2s ease;
+    line-height: 1;
+  }
+
+  .glass-nav .navbar-toggler:focus {
+    box-shadow: 0 0 0 2px rgba(var(--bx-primary-rgb), 0.30);
+    outline: none;
+  }
+
+  .glass-nav .navbar-toggler:active,
+  .glass-nav .navbar-toggler[aria-expanded="true"] {
+    background: rgba(var(--bx-primary-rgb), 0.08) !important;
+    border-color: rgba(var(--bx-primary-rgb), 0.30) !important;
+    color: var(--bx-primary);
+  }
+
+  /* 3. Dropdown panel — deep glass card */
+  .glass-nav .navbar-collapse {
+    background: linear-gradient(
+      160deg,
+      rgba(10, 16, 36, 0.97) 0%,
+      rgba(4, 5, 14, 0.98) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top-color: rgba(255, 255, 255, 0.14);
+    border-radius: 1.25rem;
+    padding: 1.1rem 0.85rem 1rem;
+    margin-top: 0.65rem;
+    box-shadow:
+      0 24px 56px -12px rgba(0, 0, 0, 0.80),
+      0 0 80px -24px rgba(var(--bx-primary-rgb), 0.06),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    overflow: hidden;
+    /* Thin green scanline at the very top for the coding aesthetic */
+    border-top: 1px solid rgba(var(--bx-primary-rgb), 0.18);
+  }
+
+  /* 4. Nav list — add bottom separator before CTAs */
+  .glass-nav .navbar-nav {
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 0.1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 5. Nav links — pill hover, readable tap size */
   .glass-nav .nav-link {
-    margin: 0.25rem 0;
+    margin: 0;
+    padding: 0.6rem 0.9rem !important;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    transition: background 0.18s ease, color 0.18s ease;
+    display: flex;
+    align-items: center;
   }
-  
+
   .glass-nav .nav-link:hover {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding-left: 0.9rem !important;
+    padding-right: 0.9rem !important;
   }
-  
+
+  /* Hide hover brackets (touch has no hover state) */
   .glass-nav .nav-link:hover::before,
   .glass-nav .nav-link:hover::after {
     display: none;
   }
 
-  /* Brackets are position:absolute relative to the link element.
-     On full-width mobile links ] would sit at the far right edge.
-     Shrink to content width so [ ] stay tight around the text. */
+  /* Active link: green glow pill + tight [ ] brackets */
   .glass-nav .nav-link.active {
+    background: rgba(var(--bx-primary-rgb), 0.10) !important;
+    color: var(--bx-primary) !important;
+    box-shadow: 0 0 16px -6px rgba(var(--bx-primary-rgb), 0.25);
     width: fit-content;
+    padding-left: 1.55rem !important;
+    padding-right: 1.55rem !important;
+  }
+
+  /* 6. CTA row — side-by-side, fills panel width */
+  .glass-nav .navbar-collapse > .d-flex {
+    margin-top: 0 !important;
+    gap: 0.5rem !important;
+  }
+
+  .glass-nav .navbar-collapse .btn-outline-glass,
+  .glass-nav .navbar-collapse .btn-primary-glass {
+    flex: 1 1 0;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -1899,6 +1978,10 @@ select:focus-visible,
   .glass-nav.scrolled {
     background: rgba(4, 5, 14, 0.94) !important;
     border-color: rgba(34, 197, 94, 0.18) !important;
+  }
+  /* Collapse panel solid bg since backdrop-filter is off on mobile */
+  .glass-nav .navbar-collapse {
+    background: rgba(8, 12, 28, 0.99) !important;
   }
 
   /* 4. Scope transitions to GPU-friendly props only — avoid "transition:all"
