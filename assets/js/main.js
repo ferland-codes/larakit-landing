@@ -566,7 +566,7 @@ return [`;
     'license' => 'pay_once · own_forever',
 
     'ready'   => true, // days, not months
-`;`;
+`;
 
         let currentIndex = 0;
         let isDeleting = false;
