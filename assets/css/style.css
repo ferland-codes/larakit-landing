@@ -2002,11 +2002,11 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     rgba(255, 255, 255, 0.012) 100%
   );
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 1.15rem;
-  padding: 1.35rem 1.2rem 1.1rem;
+  border-radius: 1rem;
+  padding: 1rem 1rem 0.85rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.55rem;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.3s ease,
@@ -2036,13 +2036,13 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 /* Icon box */
 .mod-card-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 0.7rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   flex-shrink: 0;
   background: rgba(var(--mc-rgb), 0.1);
   color: var(--mc-color);
@@ -2050,30 +2050,30 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   transition: box-shadow 0.3s ease;
 }
 .mod-card:hover .mod-card-icon {
-  box-shadow: 0 0 20px -4px rgba(var(--mc-rgb), 0.5);
+  box-shadow: 0 0 16px -4px rgba(var(--mc-rgb), 0.5);
 }
 
 .mod-card-name {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.3;
 }
 .mod-card-sub {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--bx-text-muted);
   font-family: var(--font-code);
 }
 
 /* Tiny "artisan:install" pill at bottom */
 .mod-card-pill {
-  margin-top: auto;
+  margin-top: 0.25rem;
   display: inline-flex;
   align-items: center;
   font-family: var(--font-code);
-  font-size: 0.65rem;
-  padding: 0.18rem 0.55rem;
+  font-size: 0.6rem;
+  padding: 0.14rem 0.45rem;
   border-radius: 100rem;
   background: rgba(var(--mc-rgb), 0.08);
   color: var(--mc-color);
