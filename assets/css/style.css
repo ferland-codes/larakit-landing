@@ -1774,6 +1774,125 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
+/* ==========================================
+   HOW IT WORKS — STEPS CARDS
+   ========================================== */
+.steps-card {
+  position: relative;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.038) 0%,
+    rgba(255, 255, 255, 0.012) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: none;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+/* Top accent gradient bar */
+.steps-card-accent {
+  height: 2px;
+  width: 100%;
+}
+.steps-card-accent--1 { background: linear-gradient(90deg, var(--bx-primary) 0%, rgba(34, 197, 94, 0) 75%); }
+.steps-card-accent--2 { background: linear-gradient(90deg, var(--bx-cyan) 0%, rgba(34, 211, 238, 0) 75%); }
+.steps-card-accent--3 { background: linear-gradient(90deg, #a855f7 0%, rgba(168, 85, 247, 0) 75%); }
+
+/* Large watermark step number */
+.steps-card-watermark {
+  position: absolute;
+  bottom: -0.5rem;
+  right: 1rem;
+  font-family: var(--font-code);
+  font-size: 7rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.028);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -6px;
+  transition: color 0.35s ease;
+}
+
+.steps-card-body {
+  padding: 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon box */
+.steps-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+.steps-icon--1 {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--bx-primary);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  box-shadow: 0 0 24px -6px rgba(34, 197, 94, 0.35);
+}
+.steps-icon--2 {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--bx-cyan);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow: 0 0 24px -6px rgba(34, 211, 238, 0.35);
+}
+.steps-icon--3 {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  box-shadow: 0 0 24px -6px rgba(168, 85, 247, 0.35);
+}
+
+/* Function signature */
+.steps-fn {
+  font-family: var(--font-code);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.steps-fn-name--1 { color: var(--bx-primary); }
+.steps-fn-name--2 { color: var(--bx-cyan); }
+.steps-fn-name--3 { color: #a855f7; }
+.steps-fn-paren   { color: rgba(255, 255, 255, 0.28); }
+
+.steps-desc { font-size: 0.9rem; line-height: 1.65; }
+
+/* Hover — lift + themed glow */
+.steps-card--1:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 197, 94, 0.22);
+  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.55),
+              0 0 50px -20px rgba(34, 197, 94, 0.18);
+}
+.steps-card--2:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 238, 0.22);
+  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.55),
+              0 0 50px -20px rgba(34, 211, 238, 0.18);
+}
+.steps-card--3:hover {
+  transform: translateY(-6px);
+  border-color: rgba(168, 85, 247, 0.22);
+  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.55),
+              0 0 50px -20px rgba(168, 85, 247, 0.18);
+}
+
+/* Watermark brightens on hover to match accent */
+.steps-card--1:hover .steps-card-watermark { color: rgba(34, 197, 94, 0.055); }
+.steps-card--2:hover .steps-card-watermark { color: rgba(34, 211, 238, 0.055); }
+.steps-card--3:hover .steps-card-watermark { color: rgba(168, 85, 247, 0.055); }
+
 /* Horizontal connectors for Timeline / Workflow */
 .timeline-connect-line {
   position: relative;
