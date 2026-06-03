@@ -776,16 +776,20 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 .bx-nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(2, 3, 10, 0);
+  background: rgba(2, 3, 10, 0.6);
+  opacity: 0;
   pointer-events: none;
   z-index: 1044;
-  transition: background 0.32s ease;
+  /* delay visibility:hidden until after opacity fades out */
+  transition: opacity 0.32s ease, visibility 0s linear 0.32s;
   visibility: hidden;
 }
 .bx-nav-backdrop.show {
-  background: rgba(2, 3, 10, 0.6);
+  opacity: 1;
   pointer-events: auto;
   visibility: visible;
+  /* on show: visibility fires immediately, opacity fades in */
+  transition: opacity 0.32s ease, visibility 0s linear 0s;
 }
 
 /* ==========================================
